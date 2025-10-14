@@ -1,2 +1,2 @@
 # LinearControl2025
-This repository includes exercises and projects from the Linear Control Systems course by Mohammad Amin Horri Farahani, supervised by Dr. Taghirad. It covers key topics such as system modeling, stability, frequency response, and controller design using MATLAB and Simulink.
+This repository includes exercises and projects from the Linear Control Systems course by Mohammad Amin Horri Farahani, supervised by Dr. Taghirad. It covers key topics such as system modeling, stability, frequency response, and controller design using MATLAB and Simulink...
