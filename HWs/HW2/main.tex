@@ -1,0 +1,433 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[sorting=none]{biblatex}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subfigure}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=teal,
+    filecolor=magenta,      
+    urlcolor=teal,
+    citecolor = teal
+    }
+\usepackage{xcolor}
+\usepackage{xepersian}
+\setlength\headheight{28pt} 
+\addbibresource{bibliography.bib}
+\settextfont[Path={./font/}, Scale=1.3]{IRLotus}
+\setlatintextfont[Scale=1]{Times New Roman}
+\usepackage{float} 
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\includegraphics[width=1cm]{img/Logo.png} پاسخ تمرین 2 }
+\lhead{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\AtBeginDocument{
+	\def\chapterautorefname{فصل}%
+	\def\sectionautorefname{پاسخ سوال}%
+	\def\subsectionautorefname{بخش}%
+	\def\subsubsectionautorefname{بخش}%
+	\def\equationautorefname{رابطهٔ}%
+    \def\lstlistingautorefname{برنامۀ}%
+}
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\usepackage{amsmath}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\input{titlepage}
+
+\tableofcontents \clearpage
+\listoffigures \clearpage
+\clearpage
+ \clearpage
+\newpage
+
+
+
+\section{قاعده میسون}\label{Section1}
+قاعدهٔ میسون (\lr{Mason's Gain Formula}) روشی برای محاسبهٔ تابع انتقال در \lr{Signal Flow Graph} (نمودار جریان سیگنال) است. 
+این قاعده با در نظر گرفتن تمام مسیرهای پیشرو، حلقه‌ها و حلقه‌های غیرهمبند، مقدار کلی بهرهٔ سیستم را بدون نیاز به حل معادلات جبری به‌دست می‌آورد.
+
+فرمول کلی میسون به‌صورت زیر بیان می‌شود:
+
+\begin{equation}
+T = \frac{\sum_{k=1}^{N} P_k \Delta_k}{\Delta}
+\end{equation}
+
+که در آن:
+\begin{itemize}
+  \item $T$ : تابع انتقال کل سیستم
+  \item $P_k$ : بهرهٔ مسیر پیشرو $k$ام
+  \item $\Delta$ : تعیین‌کننده کلی سیستم، برابر است با
+  \begin{latin}
+  \[
+  \Delta = 1 - (\text{Sum of individual loop gains}) + (\text{Sum of gain products of two non-touching loops}) - \cdots
+  \]
+  \end{latin}
+  \item $\Delta_k$ : همان $\Delta$ است ولی با حذف حلقه‌هایی که با مسیر پیشرو $k$ام همبستگی دارند.
+\end{itemize}
+
+
+\LTRfootnote{SFG : Signal Flow Graph}
+\subsection{رسم شماتیک SFG}
+% --- اگر تصویر PDF داری ---
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/Asset_2.pdf}
+  \caption{SFG سوال 1}
+  \label{fig:block-diagram}
+\end{figure}
+
+\subsection{مراحل استفاده از فرمول میسون}
+
+در ابتدا تعداد حلقه‌ها و بهره‌های مربوط به آن‌ها را می‌نویسیم:
+
+\[
+-G_{2}G_{3}H_{1}, \quad -G_{5}G_{6}H_{2}, \quad G_{7}G_{5}G_{8}, \quad -G_{7}G_{5}G_{9}G_{3}H_{1}
+\]
+
+از بین این چهار حلقهٔ موجود در نمودار، فقط دو حلقهٔ 
+$-G_{2}G_{3}H_{1}$ 
+و 
+$-G_{5}G_{6}H_{2}$ 
+دو به دو اشتراکی با یکدیگر ندارند. 
+
+همچنین هیچ سه حلقه‌ای وجود ندارد که هیچ‌گونه اشتراکی با هم نداشته باشند.
+
+در این بخش تابع تبدیل ورودی \(R_2\) به خروجی \(Y_1\) را با استفاده از قاعدهٔ میسون محاسبه می‌کنیم. برای این منظور ابتدا مسیرهای پیشرو و تعیین‌کننده‌ها (حلقه‌ها) را مشخص می‌کنیم.
+
+فرض کنیم حلقه‌ها را به‌صورت زیر نام‌گذاری کنیم:
+\[
+\begin{aligned}
+L_{1} &= -G_{2}G_{3}H_{1},\\
+L_{2} &= -G_{5}G_{6}H_{2},\\
+L_{3} &= G_{7}G_{5}G_{8},\\
+L_{4} &= -G_{7}G_{5}G_{9}G_{3}H_{1},\\
+\end{aligned}
+\]
+
+مسیرهای پیشرو از \(R_2\) به \(Y_1\) را به‌صورت :
+\[
+P_{1}=G_{11}G_{2}G_{3},\; P_{2}=G_{4}G_{5}G_{9}G_{3},\;P_{3}=G_{11}G_{7}G_{5}G_{9}G_{3},\;P_{4}=G_{4}G_{5}G_{8}G_{2}G_{3}
+\]
+است.
+
+با توجه به مسئله: تنها زوج حلقه‌های غیرهم‌اشتراکی، \(L_{1}\) و \(L_{2}\) هستند و هیچ مجموعهٔ سه‌تایی غیرهم‌اشتراکی‌ای وجود ندارد. بنابراین تعیین‌کنندهٔ کلی \(\Delta\) برابر است با:
+\[
+\Delta = 1 - (L_{1}+L_{2}+L_{3}+L_{4}) + (L_{1}L_{2}),
+\]
+
+\[
+=>\Delta = 1 - G_{7}G_{5}G_{8}+G_{2}G_{3}H_{1}+G_{5}G_{6}H_{2}+G_{7}G_{5}G_{9}G_{3}H_{2}+G_{2}G_{3}G_{5}G_{6}H_{1}H_{2}
+\]
+جملات حاصل‌ضرب سه‌تایی یا بیشتر صفرند.
+
+برای هر مسیر پیشرو \(P_k\) نیز \(\Delta_k\) را به‌صورت \(\Delta\) اما با حذف حلقه‌هایی که با مسیر \(P_k\) اشتراک دارند تعریف می‌کنیم. 
+(در عمل برای هر \(k\) باید حلقه‌هایی که با \(P_k\) تماسی ندارند برداشته و جمع/حاصل‌ضربِ متناظر محاسبه شود.)
+
+در نهایت با قاعدهٔ میسون تابع تبدیل مورد نظر خواهد بود:
+\[
+\frac{Y_{1}}{R_{2}} \;=\; \frac{\displaystyle\sum_{k=1}^{4} P_{k}\,\Delta_{k}}{\Delta} = \frac{(G_{11}G_{2}G_{3})(-G_{5}G_{6}H_{2}) + (G_{4}G_{5}G_{9}G_{3})(1) + (G_{11}G_{7}G_{5}G_{9}G_{3})(1) + (G_{4}G_{5}G_{8}G_{2}G_{3})(1)}{1 - G_{7}G_{5}G_{8}+G_{2}G_{3}H_{1}+G_{5}G_{6}H_{2}+G_{7}G_{5}G_{9}G_{3}H_{2}+G_{2}G_{3}G_{5}G_{6}H_{1}H_{2}}
+\]
+
+
+حال مسیرهای پیشرو از \(E_7\) به \(E_4\) را مشخص میکنیم  :
+\[
+P_{1}=-G_{5}G_{9}G_{3}H_{2},\; P_{2}=-G_{5}G_{8}G_{2}G_{3}H_{2},\;
+\]
+ 
+لذا مانند قسمت الف) داریم :
+
+\[
+\frac{E_{4}}{E_{7}} \;=\; \frac{\displaystyle\sum_{k=1}^{2} P_{k}\,\Delta_{k}}{\Delta} = \frac{(-G_{5}G_{9}G_{3}H_{2})(1) + (-G_{5}G_{8}G_{2}G_{3}H_{2})(1) }{1 - G_{7}G_{5}G_{8}+G_{2}G_{3}H_{1}+G_{5}G_{6}H_{2}+G_{7}G_{5}G_{9}G_{3}H_{2}+G_{2}G_{3}G_{5}G_{6}H_{1}H_{2}}
+\]
+
+\section{رفع اغتشاش سوال 2}
+
+\subsection{استفاده از فرمول میسون}
+
+هدف کم‌کردن یا حذف اثر اغتشاش \(N(s)\) روی خروجی \(Y(s)\) با کمینه یا صفر کردن تابع انتقال \(T_{yn}(s)=\dfrac{Y(s)}{N(s)}\) است .
+میتوانیم SFG شکل را رسم نموده و از طریق فرمول میسون  \(T_{yn}(s)=\dfrac{Y(s)}{N(s)}\)  را بدست اورده :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/Asset_3.pdf}
+  \caption{ SFG سیستم}
+  \label{fig:block-diagram}
+\end{figure}
+
+برای اینکه نویز در خروجی حذف شود باید \(T_{yn}(s)=\dfrac{Y(s)}{N(s)}\)  کمینه یا صفر شود لذا نیازی به محاسبه  \(\Delta\) نیست و درواقع باید حاصل ضرب \(P_k\) \(\Delta_k\)  در فرمول میسون برابر صفر شود .
+
+\indent % برای ایجاد تورفتگی در متن
+مسیرهای پیشرو از \(Noise\) به \(Y\) به‌صورت زیر است :
+\[
+P_{1}=1\times1 ,\; P_{2}=-G \times \frac{s+10}{s+30} \times \frac{5}{s^2+10s}
+\]
+
+\[
+P_{1} K_{1} + P_{2} K_{2} = 0 = 1 \times \left(1 + \frac{s + 10}{s + 30} \right) + (-G \times \frac{s+10}{s+30} \times \frac{5}{s^2+10s})(1)
+\]
+
+\[
+\Rightarrow \quad G =\frac{2s}{5}(s+20)
+\]
+
+
+\pagebreak
+\section{نمودار بلوکی}
+
+\subsection{بخش اول}
+الف ) با توجه به شکل 4 داریم :
+\[
+ [ -Y_{1}(\frac{s+1}{s^2+s+1}) + C ]G_{1} = Y_{1}
+\]
+
+\[
+\Rightarrow \quad\frac{Y_{1}}{C} = \frac{G_{1}}{1 + G_{1}\left(\frac{s+1}{s^{2}+s+1}\right)} = \frac{s^2+s+1} 
+{s^3+s+2}\Rightarrow \quad\ G_{1} = \frac{s^2+s+1}{s^3+1}\quad\ \]
+که حالا میتوانیم به دلخواه تابع \(G_1\) را به دو تابع تبدیل جدا از هم تبدیل کنیم : 
+
+
+\[
+  G_{2} = \frac{1}{s+1}\quad , \quad  G_{3} = \frac{s^2+s+1}{s^2-s+1}
+\]
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/Asset_4.pdf}
+  \caption{ نمودار بلوکی}
+  \label{fig:block-diagram}
+\end{figure}
+\subsection{بخش دوم}
+ب ) با توجه به قسمت قبلی میتوانیم شکل نمودار را ساده کنیم پس داریم :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/Asset_6.pdf}
+  \caption{ نمودار بلوکی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\[
+\Rightarrow \quad\ Y_{1} = (Y_{1} . C)(\frac{1}{s-1} )(\frac{2}{s})
+\]
+
+\[
+\Rightarrow \quad\ \frac{Y_{1}}{C} = \frac{2}{s^2-s-2}
+\]
+\vspace*{2cm} 
+
+\subsection{بخش سوم}
+ ج) در این قسمت چون ورودی مستقیم به خروجی وصله یعنی سیستم مستقل از عناصره :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/Asset_7.pdf}
+  \caption{ نمودار بلوکی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\[
+\Rightarrow \quad\ \frac{V_{out}}{V_{in}} = 1
+\]
+
+\section{بررسی موتور  DC}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/dc.png}
+  \caption{ ماشین DC}
+  \label{fig:block-diagram}
+\end{figure}
+\subsection{معادلات حاکم بر سیستم}
+
+در ابتدا پارامتر هایی که در فایل متلب بود رو مورد بررسی قرار میدهیم :
+\[
+\begin{aligned}
+&J = 0.01 &&\text{(ممان اینرسی)}\\
+&b = 0.1  &&\text{(ضریب اصطکاک )}\\
+&K = 0.01 &&\text{(ثابت طراحی)}\\
+&R = 1    &&\text{(مقاومت آرمیچر)}\\
+&L = 0.5  &&\text{(اندوکتانس )}
+\end{aligned}
+\]
+اکنون معادلات مغناطیسی و الکتریکی حاکم بر سیستم را مینویسیم :
+
+\[
+\begin{cases}
+J\,\dfrac{d\omega(t)}{dt} + b\,\omega(t) = K\,i(t),\\[6pt]
+L\,\dfrac{di(t)}{dt} + R\,i(t) + K\,\omega(t) = V(t).
+\end{cases}
+\]
+که با توجه به مقادیر داخل فایل : 
+\[
+\begin{cases}
+0.01\;\dfrac{d\omega(t)}{dt} + 0.1\,\omega(t) = 0.01\,i(t),\\[6pt]
+0.5\;\dfrac{di(t)}{dt} + 1\,i(t) + 0.01\,\omega(t) = V(t).
+\end{cases}
+\]
+حال معادلات را در حوزه لاپلاس میبریم و تابع تبدیل را بدست میاوریم :
+\[
+\begin{aligned}
+&J s\,\Omega(s) - J\,\omega(0) + b\,\Omega(s) = K\,I(s),\\[6pt]
+&L s\,I(s) - L\,i(0) + R\,I(s) + K\,\Omega(s) = V(s).
+\end{aligned}
+\]
+
+% --- اگر شرایط اولیه صفر باشند (\omega(0)=0,\; i(0)=0) ---
+\[
+\begin{aligned}
+&(J s + b)\,\Omega(s) = K\,I(s),\\[6pt]
+&(L s + R)\,I(s) + K\,\Omega(s) = V(s).
+\end{aligned}
+\]
+
+% --- حل جبری برای بدست آوردن تابع تبدیل \Omega(s)/V(s) (نمادین) ---
+\[
+\frac{\Omega(s)}{V(s)}
+= \frac{K}{LJ\,s^{2} + (Lb + RJ)\,s + \big(Rb + K^{2}\big)}.
+\]
+
+% --- جایگذاری مقادیر عددی (J=0.01,\; b=0.1,\; K=0.01,\; R=1,\; L=0.5) ---
+\[
+\frac{\Omega(s)}{V(s)}
+= \frac{0.01}{0.005\,s^{2} + 0.06\,s + 0.1001} = \frac{100}{50\,s^{2} + 600\,s + 1001}  .
+\]
+% معادلات به صورت حالت (state-space) — مفید برای پیاده‌سازی در Simulink
+با توجه به تابع تبدیل میتوان مقادیر فرکانس طبیعی نامیرا و نسبت میرایی را حساب کرد :
+
+\[
+\Rightarrow \omega_{n} = \sqrt{\frac{1001}{50}} \approx 4.474 , \quad 2\zeta\omega_{n} = 12 , \Rightarrow \zeta \approx 1.34
+\]
+\begin{RTL}
+چون $\zeta > 1$ شد، پس می‌توان فهمید که قطب‌ها حقیقی هستند و پاسخ پلهٔ این سیستم در حالت کلی به صورت زیر است:
+\end{RTL}
+
+\[
+y(t) = K(1 + \frac{\omega_{n}}{2\sqrt{\zeta^2-1}}(\frac{e^{-s_{1}t}}{s_{1}} - \frac{e^{-s_{2}t}}{s_{2}}))
+\]
+مطابق خروجی متلب در ورودی پله  :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/step.png}
+  \caption{  Response Step}
+  \label{fig:block-diagram}
+\end{figure}
+
+\subsection{طراحی مدل ماشین DC در سیمولینک متلب}
+
+با توجه به معادلات سیستم میتوان چنین سیستمی را برای ماشین DC مدل کرد :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.1\textwidth]{img/myModel.pdf}
+  \caption{Model Machine DC}
+  \label{fig:block-diagram}
+\end{figure}
+
+که نیمه اول مدل مربوط به رابطه الکتریکی حاکم بر ماشین DC می شود و بقیه آن مربوط به رابطه مکانیکی و همچنین مشاهده میشود از بلوک های بهره و انتگرال گیر در طراحی استفاده شده است.
+
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/speed_my.png}
+        \caption{ورودی پله به سیستم مدل شده}
+        \label{fig:image1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/step.png}
+        \caption{فایل متلب داده شده}
+        \label{fig:image2}
+    \end{minipage}
+\end{figure}
+\vspace{2cm}
+\begin{RTL}
+برای فشرده‌سازی مدل می‌توان بلوک‌ها را به صورت یک \lr{Subsystem} ایجاد کرد و تنها ورودی‌ها و خروجی‌های اصلی را به آن متصل نمود.
+در این سیستم، ورودی‌ها شامل \(V(t)\) و یا \(T_{l}\) هستند و خروجی‌ها نیز \(\omega\) و \(i\) می‌باشند.
+همچنین می‌توان بخش‌های الکتریکی یا مکانیکی موتور را به صورت جداگانه در قالب \lr{Subsystem} قرار داد تا مدار کلی فشرده‌تر و منظم‌تر شود.
+\end{RTL}
+
+
+
+
+\section{ضمیمه}
+\href{https://github.com/MJAHMADEE/ARASLaTeXFormats}{ ادرس گیت هاب  (\lr{GitHub})}.
+
+%\printbibliography[title=منابع]
+
+\begin{thebibliography}{99}
+
+
+\end{thebibliography}
+
+\renewcommand{\section}[2]{}%
+\begin{thebibliography}{99} % assumes less than 100 references
+%چنانچه مرجع فارسی نیز داشته باشید باید دستور فوق را فعال کنید و مراجع فارسی خود را بعد از این دستور وارد کنید
+\begin{LTRitems}
+\resetlatinfont
+\bibitem{mason1956}
+S.~J. Mason, ``Feedback Theory—Further Properties of Signal Flow Graphs,'' 
+\emph{Proceedings of the I.R.E.}, vol.~44, no.~7, July 1956.
+% PDF (MIT RLE tech. report reprint): https://dspace.mit.edu/bitstream/handle/1721.1/4778/RLE-TR-303-15342712.pdf
+
+\bibitem{ogata2010}
+K.~Ogata, \emph{Modern Control Engineering}, 5th ed. Prentice Hall, 2010.
+
+\bibitem{nise2014}
+N.~S. Nise, \emph{Control Systems Engineering}, 7th ed. Wiley, 2014.
+
+\bibitem{mathworks_dc}
+The MathWorks, ``DC Motor Control — MATLAB \& Simulink Example,'' 
+\emph{MathWorks Documentation}. Available: \url{https://www.mathworks.com/help/control/ug/dc-motor-control.html}
+
+\bibitem{kuczmann2024}
+M.~Kuczmann, ``Review of DC Motor Modeling and Linear Control Theory with Laboratory Tests,'' 2024. 
+(Review article — modeling, identification and control of DC motors.) 
+Available (preprint / repository): \url{https://www.researchgate.net/publication/381246468_Review_of_DC_Motor_Modeling_and_Linear_Control_Theory_with_Laboratory_Tests}
+
+\bibitem{ctms}
+R.~K. Kraus (or CTMS authors), ``DC Motor Speed: System Modeling,'' \emph{Control Tutorials for MATLAB and Simulink (CTMS)}, University of Michigan. 
+Available: \url{https://ctms.engin.umich.edu/CTMS/index.php?example=MotorSpeed&section=SystemModeling}
+
+\end{LTRitems}
+
+\end{thebibliography}
+
+\end{document}
