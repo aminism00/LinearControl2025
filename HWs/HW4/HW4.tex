@@ -1,0 +1,967 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\usepackage[final]{neurips}
+\usepackage{subfigure}
+\usepackage{enumitem}
+\usepackage{subfloat}
+% to avoid loading the natbib package, add option nonatbib:
+    % \usepackage[nonatbib]{neurips_2019}
+\usepackage{setspace} % Include the setspace package in your preamble
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+% To set one-and-a-half spacing:
+\onehalfspacing
+\usepackage[utf8]{inputenc} % allow utf-8 input
+% \usepackage{natbib}
+% \let\citep\cite
+% \let\citelatin\cite
+% \let\citeplatin\cite
+
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage[hidelinks]{hyperref}      % hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor = teal
+    }
+% \usepackage{xcolor}
+\usepackage{tcolorbox}
+\setcounter{footnote}{0} 
+\usepackage{amsmath} 
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xepersian}
+\usepackage{fontawesome5}
+
+\settextfont{XB Yas.ttf}
+
+
+\title{محمدامین حری فراهانی- پاسخ تمرین 4}
+
+
+
+
+
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+
+\begin{minipage}{0.1\textwidth}% adapt widths of minipages to your needs
+\includegraphics[width=1.3cm]{img/Logo.png}
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.9\textwidth}\raggedleft
+دانشگاه صنعتی خواجه نصیرالدین طوسی تهران\\
+پاسخ تمرین چهارم\\
+\end{minipage}
+% \end{}
+
+\makepertitle
+
+\begin{center}
+\href{https://github.com/aminism00/LinearControl2025/tree/main/HWs/HW4}{\faGithub\ مخزن گیت هاب}
+\end{center}
+
+
+\section{سوال اول}
+\subsection{(الف)}
+
+تابع انتقال مورد نظر برابر است با:
+\[
+H(s) = (1+k_1 s)\left(\frac{3}{s^4+3s^3+5s^2+6s+k_2}\right)
+\]
+
+\[
+\Delta(s)=s^4+3s^3+5s^2+6s+k_2
+\]
+
+جدول راث برای $\Delta(s)$:
+\[
+\begin{array}{c|ccc}
+\text{ردیف} & \text{ستون 1} & \text{ستون 2} & \text{ستون 3} \\ \hline
+s^4 & 1     & 5   & k_2 \\
+s^3 & 3     & 6   & 0   \\
+s^2 & \dfrac{3\cdot 5 - 1\cdot 6}{3} = 3 & \dfrac{3\cdot k_2 - 1\cdot 0}{3} = k_2 & 0 \\
+s^1 & \dfrac{3\cdot 6 - 3\cdot k_2}{3} = 6-k_2 & 0 & 0 \\
+s^0 & k_2 &  & 
+\end{array}
+\]
+
+ میدانیم که برای پایداری همهٔ اعضای ستون اول باید هم علامت باشند که اینجا به معنی مثبت بودن است:
+\[
+\begin{aligned}
+&1 > 0,\\
+&3 > 0,\\
+&3 > 0,\\
+&6 - k_2 > 0 \quad\Rightarrow\quad k_2 < 6,\\
+&k_2 > 0.
+\end{aligned}
+\]
+بنابراین شرط نهایی برای پایداری:
+\[
+\boxed{0 < k_2 < 6}
+\]
+
+ضریب $k_1$ در تأثیری روی جای قطب‌ها ندارد، پس شرط پایداری فقط وابسته به $k_2$ است.
+\subsection{(ب)}
+تابع انتقال:
+\[
+H(s)=\frac{(1+k_1 s)G(s)}{1+(1+k_1 s)G(s)}
+\]
+
+\[
+\Delta(s)=s^4+3s^3+5s^2+6s+k_2 + 3 + 3k_1 s
+\]
+برابر است با:
+\[
+\Delta(s)=s^4 + 3s^3 + 5s^2 + (6+3k_1)s + (k_2+3)
+\]
+
+\bigskip
+\noindent جدول راث (بررسی پایداری):
+\[
+\begin{array}{c|ccc}
+\text{ردیف} & \text{ستون 1} & \text{ستون 2} & \text{ستون 3} \\ \hline
+s^4 & 1 & 5 & k_2+3 \\
+s^3 & 3 & 6+3k_1 & 0 \\[6pt]
+s^2 & \dfrac{3\cdot 5 - 1(6+3k_1)}{3}
+= \dfrac{15-6-3k_1}{3} = 3 - k_1
+& \dfrac{3(k_2+3)-1\cdot 0}{3} = k_2+3
+& 0 \\[10pt]
+s^1 & \displaystyle
+\frac{(3-k_1)(6+3k_1) - 3(k_2+3)}{3-k_1}
+= \frac{3\big(3 + k_1 - k_1^2 - k_2\big)}{3-k_1}
+& 0 & 0 \\[12pt]
+s^0 & k_2+3 & & 
+\end{array}
+\]
+برای پایداری باید همهٔ اعضای ستون اول مثبت باشند:
+\[
+\begin{aligned}
+&1 > 0,\\
+&3 > 0,\\
+&3 - k_1 > 0 \quad\Rightarrow\quad k_1 < 3,\\
+&\frac{3\big(3 + k_1 - k_1^2 - k_2\big)}{3-k_1} > 0,\\
+&k_2 + 3 > 0 \quad\Rightarrow\quad k_2 > -3.
+\end{aligned}
+\]
+
+از انجایی که \(3-k_1>0\) , کافی است شرط مثبت بودن صورت کسر را بررسی کنیم
+\[
+3 + k_1 - k_1^2 - k_2 > 0 \quad\Rightarrow\quad k_2 < 3 + k_1 - k_1^2.
+\]
+
+در نتیجه شرط‌های نهایی پایداری عبارت‌اند از:
+\[
+\boxed{\;k_1 < 3,\qquad -3 < k_2 < 3 + k_1 - k_1^2\;}
+\]
+\subsection{(ج)}
+برای اینکه هم سیستم حلقه بسته و هم سیستم حلقه ی باز پایدار باشد باید دو شرط هم زمان برقرار باشد
+پس داریم:
+
+
+\[
+\boxed{0 < k_2 < 6 \qquad\;k_1 < 3,\qquad -3 < k_2 < 3 + k_1 - k_1^2\;}
+\]
+
+
+
+\section{سوال دو}
+ابتدا چند جمله ای مخرج را مشخص میکنیم و بعد ان را گسترش می دهیم:
+\[
+\Delta(s)=(s^2-a^2)(s^2+b^2)(s+c).
+\]
+
+\[
+\begin{aligned}
+(s^2-a^2)(s^2+b^2) &= s^4 + (b^2-a^2)s^2 - a^2 b^2,\\
+\Delta(s)&=\big(s^4 + (b^2-a^2)s^2 - a^2 b^2\big)(s+c)\\
+&= s^5 + c s^4 + (b^2-a^2)s^3 + c(b^2-a^2)s^2 - a^2 b^2 s - c a^2 b^2.
+\end{aligned}
+\begin{array}{c|ccc}
+\text{ردیف} & \text{ستون 1} & \text{ستون 2} & \text{ستون 3} \\ \hline
+s^5 & 1 & b^2 - a^2 & -a^2 b^2 \\[6pt]
+s^4 & c & c(b^2 - a^2) & -c a^2 b^2 \\[10pt]
+s^3 & 4c & 2c(b^2 - a^2) & 0 \\[10pt]
+s^2 &
+\displaystyle \frac{4c \cdot c(b^2-a^2) - c\cdot 2c(b^2-a^2)}{4c}
+= \frac{c(b^2-a^2)}{2}
+&
+- c a^2 b^2
+& 0 \\[14pt]
+s^1 &
+\displaystyle
+\frac{ \frac{c(b^2-a^2)}{2}\cdot 2c(b^2-a^2) - 4c(-c a^2 b^2)}
+{ \frac{c(b^2-a^2)}{2} }
+=
+\frac{2c(a^2+b^2)^2}{\,b^2-a^2\,}
+& 0 & 0 \\[14pt]
+s^0 & - c a^2 b^2 & & \\
+\end{array}
+\]
+سطر $s^3$ در محاسبهٔ مستقیم مقدار صفر به‌وجود آمد؛
+بنابراین از چندجمله‌ای زیر استفاده می‌کنیم و مشتق ان را حساب می کنیم:
+\[
+A(s)=c\big(s^{4}+(b^{2}-a^{2})s^{2}-a^{2}b^{2}\big)
+\]
+
+\[
+A'(s)=c\big(4s^{3}+2(b^{2}-a^{2})s\big)
+\]
+\\
+میدانیم : 
+$a,b,c>0 ,
+p>0$
+با این نکته و  جدول راث علامت ها را به راحتی تعیین میکنیم:
+
+\[
+\begin{aligned}
+s^5 &: \;1 =x \quad >0,\\
+s^4 &: \;c=y>0,\\
+s^3 &: \;4c=z>0,\\
+s^2 &: \;\frac{c(b^2-a^2)}{2} =p>0,\\
+s^1 &: \;\frac{2c\,(a^2+b^2)^2}{\,b^2-a^2\,}=q>  0,\\
+s^0 &: \;-c a^2 b^2=r<0.
+\end{aligned}
+\]
+
+\section{سوال سه}
+ابتدا معادله مشخصه ها ساده می کنیم و انها را به فرم 
+$1+KG(s)$
+در می آوریم.
+
+\[
+G(s)=\frac{s+3}{s(s+5)(s+6)(s^{2}+2s+2)}.
+\]
+
+ نقاط شکست:
+
+\[
+\frac{dG(s)}{ds}=0
+\quad\Rightarrow\quad
+s \approx \{-5.52,\,-0.65 \pm 0.46j,\,-3.33 \pm 1.20j\}.
+\]
+
+ مجانب‌ها:
+
+\[
+\sigma=\frac{\sum p_i - \sum z_i}{n-m}
+=
+\frac{(0-5-6-1-1)-(-3)}{5-1}
+=
+\frac{-13+3}{4}
+=
+-2.5.
+\]
+
+زاویه‌های مجانب برای:
+\\
+\(:K>0\)
+
+
+\[
+\theta=\frac{(2k+1)\pi}{n-m}
+=\frac{(2k+1)\pi}{4}
+\qquad
+\theta=\frac{\pi}{4},\,\frac{3\pi}{4},\,\frac{5\pi}{4},\,\frac{7\pi}{4}
+\]
+
+ \(K<0\):
+
+\[
+\theta=\frac{2k\pi}{n-m}
+=\frac{2k\pi}{4},
+\qquad
+\theta=0,\,\frac{\pi}{2},\,\pi,\,\frac{3\pi}{2}
+\]
+
+زاویهٔ خروج از قطب مختلط:
+
+\[
+\tan^{-1}\left(\tfrac{1}{2}\right)
+-
+\left(
+135^\circ
++ \tan^{-1}\tfrac{1}{4}
++ \tan^{-1}\tfrac{1}{5}
++ \theta
+\right)
+=(2k+1)\pi.
+\]
+
+\[
+\Theta \approx -43^\circ.
+\]
+
+فرکانس نوسانات دائمی:
+
+\[
+1+kG(s)=0
+\quad\Rightarrow\quad
+s^{5}+13s^{4}+54s^{3}+82s^{2}+(60+k)s+3k=0.
+\]
+
+
+
+
+
+\[
+\begin{array}{c|ccc}
+s^{5} & 1 & 54 & 60+k \\[4pt]
+s^{4} & 13 & 82 & 3k \\[4pt]
+s^{3} & \tfrac{620}{13} & 60+\tfrac{10}{13}k & 0 \\[6pt]
+s^{2} & \tfrac{2035}{31}-\tfrac{13}{62}k & 3k & 0 \\[6pt]
+s^{1} & \tfrac{10(k^{2}+652k-24420)}{13k-4070} & 0 & 0 \\[6pt]
+s^{0} & 3k & &
+\end{array}
+\]
+
+برای عبور ریشه‌ها از محور موهومی، سطر \(s^{1}\) باید صفر شود:
+\[
+10(k^{2}+652k-24420)=0.
+\]
+
+
+\[
+k^2-625k-2440= 0 \quad\Rightarrow\quad k=36.89 , -661.89\times
+\]
+\[
+(\frac{2035}{31}-\frac{13}{62}k)s^2 + 3k = 0\qquad \Rightarrow s=\pm1.38j
+\]
+بنابراین فرکانس نوسانات برابر است با:
+\[
+{\omega=1.38}
+\]
+\begin{figure}[h]
+	\centering
+    \includegraphics[scale=0.25]{3-1.jpg}
+\end{figure}
+
+\[
+G(s)=\frac{s+1}{s^{2}(s+1)(5+s)}
+\]
+
+  نقاط شکست:
+
+\[
+\frac{dG(s)}{ds}
+=\frac{-15s^{3}+69s^{2}+43s+6}{s^{3}(s+1)^{2}(s+5)^{2}}
+\]
+
+\[
+s=\{-3.8\pm 1.2j,\,-3.5\}
+\]
+مجانب ها:
+\[
+\sigma=\frac{\sum p_i - \sum z_i}{n-m}
+=\frac{(-1-5)-( -1)}{4-1}
+=\frac{-29}{15}.
+\]
+زاویه های مجانب برای:
+\[
+\theta = \frac{(2k+1)\pi}{n-m}
+=\frac{(2k+1)\pi}{3} \qquad
+\theta=\frac{\pi}{3},\pi,\frac{5\pi}{3} \qquad
+K>0
+\]
+\[
+\theta = \frac{(2k)\pi}{n-m}
+=\frac{(2k)\pi}{3} \qquad
+\theta=0,\frac{2\pi}{3},\frac{4\pi}{3} \qquad
+K<0
+\]
+
+معادلهٔ مشخصه برابر است با:
+\[
+1+kG(s)=0
+\quad\Rightarrow\quad
+s^{4}+6s^{3}+5s^{2}+5ks+k=0
+\]
+
+جدول راث را برای بررسی پایداری میسازیم:
+\[
+\begin{array}{c|ccc}
+s^{4} & 1 & 5 & k \\[4pt]
+s^{3} & 6 & 5k & 0 \\[4pt]
+s^{2} & 5-\tfrac{5}{6}k & k & 0 \\[4pt]
+s^{1} & \tfrac{5k-6k}{5-\frac{5}{6}k} & 0 & 0 \\[6pt]
+s^{0} & k & &
+\end{array}
+\]
+
+برای عبور ریشه‌ها از محور موهومی، سطر \(s^{1}\) باید صفر شود:
+\[
+5k - 6k = 0
+\quad\Rightarrow\quad
+k=\frac{6\times 19}{25}
+\]
+
+\[
+s^{2}\left(5-\frac{5}{6}k\right)+k=0
+\]
+
+جایگذاری مقدار \(k\):
+\[
+s^{2}=\frac{19}{5}
+\quad\Rightarrow\quad
+s=\pm j\sqrt{\frac{19}{5}}
+\]
+
+بنابراین فرکانس نوسان برابر است با:
+\[
+\omega=\sqrt{\frac{19}{5}}.
+\]
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{3-2.jpg}
+\end{figure}
+
+
+\section{پرسش چهارم}
+
+\subsection{(الف)}
+سیستم ما دارای دو قطب در 
+$0 , -z $
+و دو صفر در 
+$2 ,-p $
+است.
+\\
+همچنین می دانیم که
+برای پایدار بودن نیاز است تا قطبی در سمت راست وجود نداشته باشد .
+در مکان هندسی ریشه ها نیز قطب ها به سمت صفر ها حرکت میکنند .
+در نتیجه میتوان برای پایدار سازی ,دو قطب را در سمت راست گذاشت در این صورت به ازای مقادیری از 
+$k$
+تمام قطب ها در سمت  چپ قرار میگیرند و سیستم پایدار میشود.
+\\
+ برای مثال یک حالت میتواند این باشد که داریم:
+$p=-2 , z=2$
+
+\[
+L(s)=G_c(s)G_p(s)
+\]
+
+\[
+L(s)=\frac{(s-2)(s+p)}{s(s+2)}
+\]
+
+\[
+p=-2 \quad , \quad z=2
+\]
+داریم:
+\[
+L(s)=\frac{(s-2)^2}{s(s+2)}
+\]
+
+\[
+\Delta(s)=1+kL(s)
+\]
+
+\[
+\Delta(s)=s^2+2s+5+k(s^2-4s+4)
+\]
+
+\[
+\Delta(s)=(k+1)s^2+(2-4k)s+4k
+\]
+
+شرایط پایداری:
+\[
+\begin{cases}
+k>-1 \\
+k<\frac{1}{2} \\
+k>0
+\end{cases}
+\quad \Rightarrow \quad
+0<k<\frac{1}{2}
+\]
+
+\begin{figure}[h]
+	\centering
+\includegraphics[scale=0.35]{4-1.png}
+\end{figure}
+
+\newpage
+\subsection{(ب)}
+در این قسمت باید نسبت میرایی بین  
+$0.4 , 0.6$
+باشد.
+\[
+\cos \theta = \zeta
+\]
+در نتیجه، تمام نقاطی که $\zeta=0.4$ دارند روی خطی از مبدأ قرار می‌گیرند
+که با محور منفی $x$ زاویهٔ $76^\circ$ می‌سازد.\\
+همچنین تمام نقاطی که $\zeta=0.6$ دارند روی خطی قرار می‌گیرند
+که با محور منفی $x$ زاویهٔ $53^\circ$ می‌سازد.
+
+در نتیجه تمام نقاط بین این خط که روی مکان هندسی ریشه ها قرار دارند قابل قبول است.
+\begin{figure}[h]
+	\centering
+\includegraphics[scale=0.35]{4-2.png}
+\end{figure}
+\\
+حال باید k محل برخورد دو خط را با مکان هندسی ریشه ها پیدا کنیم.
+
+هر نقطه روی خط
+$\zeta = 0.4 $
+به فرم مقابل است:
+\[
+\tan\theta=\tan(\arccos 0.4) = 2.29  \qquad s = -\beta +2.29\beta j
+\]
+
+\[
+1 + k\,G(s) = 0
+\]
+
+\[
+G(s)=\frac{(s-2)^2}{s(s+2)}
+\]
+
+\[
+\Rightarrow \Delta=(k+1)s^{2} + (2-4k)s + 4k = 0
+\]
+باید s را درون معادله جایگذاری کنیم تا مقدار 
+$k ,\beta$
+بدست بیاید.
+
+	
+	\[
+	(k+1)(\beta+0.4\beta j)^2+(2-4k)(\beta+0.4\beta j)+4k=0
+	\]
+                     
+ قسمت حقیقی و موهومی را جدا می‌کنیم و مقدار 
+ $k , \beta$
+	را بدست میاوریم.
+	
+	\begin{align*}
+	\beta_1 &=0, 
+	& k_1 &= 0,\\
+	\beta_2 &=- 0.36, 
+	& k_2 &=0.26,\\
+	\beta_3 &=0.58, & k_3 &=1.11.
+	\end{align*}
+	\\
+	واضح است که k مد نظر ما برابر با
+	$0.26$
+	و مقادیر دیگر k یا از مبدا گذر میکند و یا در ربع چهارم صفحه مختصات قرار میگرد که مورد تایید نیست چرا که سیستم ناپایدار میشود.
+\\
+فرکانس طبیعی مینیمم در نقاط برخورد رخ میدهد و بخش حقیقی نقاط برخورد همان
+$\beta$
+است.
+\\
+$-\zeta\omega_{n}= \beta \Rightarrow \qquad \omega_{n} = \frac{-0.36}{-0.4}=0.9$
+\\
+همین مراحل را برای زتای
+$0.6$
+تکرار میکنیم.
+\[
+\tan\theta=\tan(\arccos 0.6) = \frac{4}{3}  \qquad s = --\beta +\frac{4}{3}\beta j
+\]
+\begin{align*}
+\beta_1 &=0, 
+& k_1 &= 0,\\
+\beta_2 &=0.49, 
+& k_2 &=0.20,\\
+\beta_3 &=-0.97, & k_3 &=1.92.
+\end{align*}
+
+باز هم مشابه ی قبل تنها 
+$k_{3}$
+مورد تایید است.
+\[
+-\zeta\omega_{n}= \beta \Rightarrow \qquad \omega_{n} = \frac{-0.97}{-0.6}=1.61
+\]
+در نتیجه فرکانس طبیعی مینیمم برای حالت اول است و مقدار آن برابر با 
+$0.9$
+
+\section*{سوال پنجم}
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.88\textwidth]{pic/6.jpg} 
+	\label{fig2}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.88\textwidth]{pic/7.jpg} 
+	\label{fig2}
+\end{figure}
+
+\section{نقشهٔ منطقهٔ پایدار در صفحهٔ \(\mathbf{k_1}\)--\(\mathbf{k_2}\)}
+توضیح: این اسکریپت ناحیه‌ای را نمایش می‌دهد که با محدودیت‌های \(k_2>0\)، \(k_2<-k_1^2+k_1+3\)، \(k_2<6\) و \(k_1<3\) مطابقت دارد. همچنین مرزها و خطوط مرجع را می‌کشد.
+
+
+
+است
+
+\[
+G(s)=\frac{1}{s(s+3)(s+6)}
+\]
+نقاط شکست:
+\[
+\frac{dG(s)}{ds}
+=\frac{3s^{2}+18s+18}{s^{2}(s+3)^{2}(s+6)^{2}}=0
+\quad\Rightarrow\quad
+s=-1.26,\,-4.73
+\]
+مجانب ها:
+\[
+\sigma=\frac{\sum p_i - \sum z_i}{n-m}
+=\frac{-3-6}{3}=-3
+\]
+زاویه خروج:
+\[
+\theta=\frac{(2k+1)\pi}{\,n-m\,}
+=\left\{\frac{\pi}{3},\;\pi,\;\frac{5\pi}{3}\right\}
+\]
+
+\[
+\Delta = 1 + kG(s)
+\]
+
+\[
+\Delta = s^{3} + 9s^{2} + 18s + k
+\]
+
+جدول راث برای بررسی پایداری:
+
+\[
+\begin{array}{c|cc}
+s^{3} & 1 & 18 \\
+s^{2} & 9 & k \\
+s^{1} & \frac{18 - k/9}{} & 0 \\
+s^{0} & k &
+\end{array}
+\]
+
+\[
+k = 18\times 9 = 162
+\]
+
+\[
+0<k<162
+\]
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{5-1.png}
+\end{figure}
+\subsection{ب.}
+\[
+M_p < 20\% 
+\;\Rightarrow\;
+e^{-\frac{\pi \zeta}{\sqrt{1-\zeta^{2}}}} < 0.2
+\;\Rightarrow\;
+\zeta > 0.45
+\;\Rightarrow\;
+\cos\theta > 0.45
+\;\Rightarrow\;
+-63^\circ < \theta < 63^\circ
+\]
+
+\[
+t_s < 2 
+\;\Rightarrow\;
+3\omega_n > \frac{-\ln\!\left[0.02\sqrt{1-\zeta^{2}}\right]}{2}
+\;\Rightarrow\;
+\zeta\omega_n > 2.01
+\]
+با توجه به دو رابطه بدست آمده مکان هندسی ریشه ها باید در ناحیه کشیده شده باشد.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{5-2.png}
+\end{figure}
+مشاهده میکنیم که به ازای هیچ مقداری از 
+$k$
+,
+3 ریشه در ناحیه ی مد نظر ما قرار نمیگیرد.
+\subsection{ج.}
+ یک کنترل کننده  pd اضافه میکنیم.
+\\
+یک صفر به ناحیه سمت چپ اضافه میکنیم به طوریکه قطب ها را به ناحیه مطلوب مان بکشد.
+\\
+برای مثال یک صفر در منفی$ 2.5 $اضافه میکنیم و بار دیگر مکان هندسی ریشه ها را رسم میکنیم.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{5-3.png}
+\end{figure}
+\\
+این بار مشاهده میکنیم که نقاطی وجود دارند که هر دو شرط بدست آمده را فراهم میکنند.
+\\
+\subsection{ د.}
+تابع تبدیل سیستم حلقه بسته به صورت زیر خواهد بود:
+\[
+G(s)=\frac{s+2}{s(s+3)(s+6)}
+\]
+\[
+L(s)= \frac{G(s)}{1+KG(s)} =
+\]
+
+در اینجا سیستم اصلا مرتبه ی دو نیست که زتا و 	فرکانس طبیعی تعریف شود.
+با این فرض که یک قطب غیر قالب داشته باشیم که از آن صرف نظر کنیم میتوان مقادیری برای زتا و فرمانس طبیعی متصور بود.
+\subsection{ه.}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{6-3.jpg}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{6-1.jpg}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{6-2.jpg}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{6-4.jpg}
+\end{figure}
+
+
+
+
+\begin{lstlisting}[caption={Stable region plot (k1 - k2)}]
+% Stable region (k1-k2)
+clear; close all; clc;
+
+k1 = linspace(-3, 2.99, 500);
+k2_upper = -k1.^2 + k1 + 3;
+k2_upper = min(k2_upper, 6);      % محدودیت بالایی K2 <= 6
+valid_idx = k2_upper > 0;
+k1_valid = k1(valid_idx);
+k2_upper_valid = k2_upper(valid_idx);
+
+K1g = linspace(min(k1_valid), max(k1_valid), 500);
+K2g = linspace(0, max(k2_upper_valid), 500);
+[K1, K2] = meshgrid(K1g, K2g);
+
+region = (K2 > 0) & (K2 < (-K1.^2 + K1 + 3)) & (K2 < 6) & (K1 < 3);
+
+figure('Name','Stable Region k1-k2','NumberTitle','off');
+contourf(K1, K2, region, [0.5 1], 'LineColor','none');
+colormap([0.95 0.98 1; 0.6 0.8 1]);
+hold on;
+plot(k1, k2_upper, '--', 'Color', [1 0.3 0.3], 'LineWidth', 2);      % مرز بسته
+plot([min(k1) max(k1)], [0 0], '-', 'Color', [0.9 0.9 0.9], 'LineWidth', 1);
+plot(k1, 6*ones(size(k1)), '--', 'Color', [0.2 1 0.4], 'LineWidth', 1.5);
+xlabel('k_1'); ylabel('k_2');
+title('Stable Region under Constraints');
+xlim([min(k1) max(k1)]);
+ylim([min(K2g) max(K2g)]);
+grid on; box on;
+legend({'Stable Region','Closed-loop Boundary','Lower Limit','Open-loop Limit'}, 'Location','northwest');
+hold off;
+\end{lstlisting}
+
+\section{چند مثال ریشه‌لوکوس (Root Locus) — مثال‌های کوتاه}
+توضیح: چند سیستم مختلف را برای بررسی روت-لوکوس رسم می‌کنیم؛ برای مقایسه، روت‌لوکوس \(G\) و \(-G\) را با هم نشان می‌دهیم.
+
+\begin{lstlisting}[caption={Root locus examples (multiple systems)}]
+% RL examples: several quick systems
+clear; close all; clc;
+
+% Example 1
+num1 = [1 3];
+den1 = [1 13 54 82 60 0];
+sys1 = tf(num1, den1);
+figure; rlocus(sys1); hold on; rlocus(-sys1,'--'); title('RL: sys1 (num=[1 3])'); grid on;
+set(findall(gcf,'type','line'),'linewidth',2); hold off;
+
+% Example 2
+num2 = [5 1];
+den2 = [1 6 5 0 0];
+sys2 = tf(num2, den2);
+figure; rlocus(sys2); hold on; rlocus(-sys2,'--'); title('RL: sys2 (num=[5 1])'); grid on;
+set(findall(gcf,'type','line'),'linewidth',2); hold off;
+
+% Example 3
+num3 = [1 -3 2];
+den3 = [1 4 0];
+sys3 = tf(num3, den3);
+figure; rlocus(sys3); hold on; rlocus(-sys3,'--'); title('RL: sys3 (num=[1 -3 2])'); grid on;
+set(findall(gcf,'type','line'),'linewidth',2); hold off;
+\end{lstlisting}
+
+\section{تحلیل و طراحی برای \(G(s)=1/[s(s+3)(s+6)]\)}
+این بخش طولانی‌تر است و شامل موارد زیر می‌شود:
+\begin{itemize}
+  \item رسم روت-لوکوس سیستم اصلی
+  \item یافتن نقاط breakaway و مقدار \(K\) متناظر
+  \item تعیین تقاطع با محور موهومی و مقدار بحرانی \(K\)
+  \item طراحی PD برای قرار دادن قطب‌های بسته در نقطهٔ مطلوب \(s_d\)
+  \item محاسبهٔ پاسخ پله برای چند مقدار \(K\) و برای PD طراحی‌شده
+  \item محاسبهٔ حاشیه‌های فرکانسی (GM, PM)
+  \item یک فاز بهینه‌سازی ساده برای fine-tuning
+\end{itemize}
+
+\begin{lstlisting}[caption={Detailed PD design and analysis for G(s)=1/[s(s+3)(s+6)]}]
+% Detailed analysis & PD design for G(s)=1/[s(s+3)(s+6)]
+clear; close all; clc;
+
+% System
+numG = 1;
+denG = [1 9 18 0];   % s*(s+3)*(s+6)
+G = tf(numG, denG);
+
+% Desired specs (example: Mp=20%, Ts ~ 2s)
+zeta = 0.4559498108;
+wn = 4.3864477027;
+sd = -zeta*wn + 1i*wn*sqrt(1-zeta^2);  % desired pole
+sd_conj = conj(sd);
+
+fprintf('Desired pole sd = %.6f %+.6fi\n', real(sd), imag(sd));
+
+% Check if sd can be placed by only K (no PD)
+K_noPD_complex = - sd * (sd + 3) * (sd + 6);  % -1/G(sd)
+K_noPD_mag = abs(K_noPD_complex);
+fprintf('Without PD: K_required (complex) = %.8f %+.8fi  |K| = %.8f\n', real(K_noPD_complex), imag(K_noPD_complex), K_noPD_mag);
+if abs(imag(K_noPD_complex)) > 1e-10
+    fprintf('=> K_required is complex -> no real K can place sd on RL (need PD)\n');
+else
+    fprintf('=> K_required is real -> possible with gain only\n');
+end
+
+% Breakaway candidates (roots of dK/ds) (analytical for cubic factors)
+roots_break = roots([-3 -18 -18]); % from (s+3)(s+6) etc - original derivation in notes
+Kvals_break = -roots_break .* (roots_break + 3) .* (roots_break + 6);
+fprintf('Breakaway candidates and K(s):\n');
+for i=1:length(roots_break)
+    fprintf(' s = %.8f %+.8fi   K(s) = %.8f %+.8fi\n', real(roots_break(i)), imag(roots_break(i)), real(Kvals_break(i)), imag(Kvals_break(i)));
+end
+
+% Imag-axis crossing (example numeric result)
+w_crit = sqrt(18);
+K_crit = 162;
+fprintf('Imag-axis crossing at w = %.6f rad/s with K = %.6f\n', w_crit, K_crit);
+
+% Plot RL and some markers
+figure('Name','Root Locus and markers','NumberTitle','off');
+rlocus(G); hold on; grid on; title('Root Locus of G(s)=1/[s(s+3)(s+6)]');
+p = pole(G);
+z = zero(G);
+plot(real(p), imag(p), 'x','MarkerSize',10,'LineWidth',2); % poles
+% mark breakaway candidates if real
+r = roots([-3 -18 -18]); r = sort(real(r));
+Kvals = -r .* (r+3) .* (r+6);
+idx_pos = find(real(Kvals) > 0);
+plot(real(r(idx_pos)), zeros(size(idx_pos)), 'ko', 'MarkerFaceColor','y');
+
+% Candidate K values -> closed-loop step responses
+Ks = [1, 10.39230485, 50, 162*0.9, 200];
+figure('Name','Closed-loop Step Responses','NumberTitle','off');
+for k = 1:length(Ks)
+    sys_cl = feedback(Ks(k)*tf(numG,denG),1);
+    subplot(length(Ks),1,k);
+    step(sys_cl,0:0.01:5);
+    title(sprintf('Closed-loop Step Response, K=%.4g', Ks(k)));
+    grid on;
+end
+
+% Design PD to place sd: numeric results from angle/magnitude method
+z_pd = 4.5292106756;
+K_pd = 21.2409234486;
+C_pd = tf([1 z_pd], 1);
+L_pd = K_pd * C_pd * G;
+T_pd = feedback(L_pd, 1);
+
+fprintf('\nClosed-loop poles with PD (K_pd = %.6f):\n', K_pd);
+p_cl_pd = pole(T_pd);
+for ii=1:length(p_cl_pd)
+    fprintf(' (%.6f %+.6fi)\n', real(p_cl_pd(ii)), imag(p_cl_pd(ii)));
+end
+
+% Step response with PD
+figure('Name','Step responses: before and after PD','NumberTitle','off');
+subplot(2,1,1); step(feedback(10*G,1), 0:0.01:5); title('Step response (no PD), K=10'); grid on;
+subplot(2,1,2); step(T_pd, 0:0.01:8); title(sprintf('Step response with PD: K=%.4f, z=%.4f', K_pd, z_pd)); grid on;
+
+% Margins
+[GM_pd, PM_pd, Wcg_pd, Wcp_pd] = margin(L_pd);
+fprintf('Frequency margins with PD: GM=%.3f dB, PM=%.3f deg\n', 20*log10(GM_pd+eps), PM_pd);
+
+% Fine-tuning via fminsearch (objective: Mp and Ts)
+Mp_target_pct = 20;  % percent
+Ts_target = 2;       % seconds
+w1 = 1; w2 = 0.5;
+obj = @(x) local_obj(x, G, Mp_target_pct, Ts_target, w1, w2, K_pd);
+x0 = [z_pd, 1];
+opts = optimset('Display','off','TolX',1e-3,'TolFun',1e-3);
+[xopt,fval] = fminsearch(obj, x0, opts);
+z_opt = xopt(1);
+K_opt = xopt(2)*K_pd;
+fprintf('\nFine-tuning result: z_opt=%.6f, K_opt=%.6f\n', z_opt, K_opt);
+T_opt = feedback(K_opt*tf([1 z_opt],1)*G,1);
+info_opt = stepinfo(T_opt);
+fprintf(' After tuning: Mp=%.3f%%, Ts=%.3fs\n', info_opt.Overshoot, info_opt.SettlingTime);
+\end{lstlisting}
+
+\section{توابع کمکی مورد استفاده در اسکریپت بالا}
+توضیح: تابع local\_obj برای بهینه‌سازی جزئی (fine-tuning) استفاده شده — این تابع را در همان فایل یا به‌عنوان تابع محلی انتهای فایل قرار بده.
+
+\begin{lstlisting}[caption={local\_obj (helper for fine-tuning)}]
+function J = local_obj(x, G, Mp_target_pct, Ts_target, w1, w2, Kpd_nom)
+    z_try = x(1);
+    Kmult = x(2);
+    % محدودیت‌های ساده: زیرو بهره باید مثبت باشند
+    if Kmult <= 0 || z_try <= 0
+        J = 1e6 + 1e3*abs(Kmult) + 1e3*abs(z_try);
+        return;
+    end
+    C_try = tf([1 z_try],1);
+    T_try = feedback(Kmult * Kpd_nom * C_try * G, 1);
+    info = stepinfo(T_try);
+    if isempty(info.Overshoot) || isempty(info.SettlingTime) || isnan(info.SettlingTime) || info.SettlingTime<=0
+        J = 1e6 + 1e3*abs(info.SettlingTime);
+    else
+        Mp_try = info.Overshoot;
+        Ts_try = info.SettlingTime;
+        J = w1*(Mp_try - Mp_target_pct)^2 + w2*(Ts_try - Ts_target)^2;
+    end
+end
+\end{lstlisting}
+
+
+\end{document}
+
