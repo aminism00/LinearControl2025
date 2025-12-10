@@ -1,0 +1,465 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[sorting=none]{biblatex}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subfigure}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=teal,
+    filecolor=magenta,      
+    urlcolor=teal,
+    citecolor = teal
+    }
+\usepackage{xcolor}
+\usepackage{xepersian}
+\setlength\headheight{28pt} 
+\addbibresource{bibliography.bib}
+\settextfont[Path={./font/}, Scale=1.3]{IRLotus}
+\setlatintextfont[Scale=1]{Times New Roman}
+\usepackage{float} 
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\includegraphics[width=1cm]{img/Logo.png} پاسخ تمرین 5 }
+\lhead{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\AtBeginDocument{
+	\def\chapterautorefname{فصل}%
+	\def\sectionautorefname{پاسخ سوال}%
+	\def\subsectionautorefname{بخش}%
+	\def\subsubsectionautorefname{بخش}%
+	\def\equationautorefname{رابطهٔ}%
+    \def\lstlistingautorefname{برنامۀ}%
+}
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\usepackage{amsmath}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{
+    language=Matlab,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false
+}
+
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\input{titlepage}
+
+\tableofcontents \clearpage
+\listoffigures \clearpage
+\clearpage
+ \clearpage
+\newpage
+
+
+
+\section{سوال 1 }\label{Section1}
+
+\begin{equation}
+G(s)=\frac{(s^{2}-2s+2)(5s+1)}{s^{2}+2s+2}
+\end{equation}
+
+
+\subsection{الف ) کشیدن نمودار بودی}
+% --- اگر تصویر PDF داری ---
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/111.jpg}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\subsection{رسم با استفاده از متلب}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/112.png}
+  \caption{Magnitude}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/113.png}
+  \caption{Phase}
+  \label{fig:block-diagram}
+\end{figure}
+مقایسه با رسم دستی نشان داد که شکل‌ها تقریباً مشابه هستند .
+
+\subsection{ج ) نایکوئیست و بررسی پایداری}
+\vspace*{1cm} 
+کد متلب :
+\begin{lstlisting}
+% تعریف صورت و مخرج تابع تبدیل
+num = conv([1 -2 2], [5 1]); % صورت: (s^2 - 2s + 2)(5s + 1)
+den = [1 2 2];               % مخرج: s^2 + 2s + 2
+
+% ساخت تابع تبدیل
+G = tf(num, den);
+
+% رسم نمودار نایکوییست
+figure;
+nyquist(G);
+grid on;
+title('Nyquist Plot of G(s)');
+\end{lstlisting}
+\vspace*{2cm} 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/114.png}
+  \caption{نمودار نایکوئیست سیستم}
+  \label{fig:block-diagram}
+\end{figure}
+
+\section*{تحلیل نایکوییست و پایداری سیستم}
+
+تابع تبدیل حلقه باز:
+\[
+G(s)=\frac{(s^{2}-2s+2)(5s+1)}{s^{2}+2s+2}
+\]
+
+\subsection*{قطب‌ها و صفرها}
+صورت و مخرج را جدا می‌کنیم:
+\[
+\text{num}(s)=(s^2-2s+2)(5s+1),\quad \text{den}(s)=s^2+2s+2
+\]
+
+ریشه‌های مخرج (قطب‌های باز) با حل \(s^2+2s+2=0\) به‌دست می‌آیند:
+\[
+s=-1\pm j1 \quad (\text{هر دو در نیم‌صفحهٔ چپ})
+\]
+
+ریشه‌های صورت:
+\[
+s^2-2s+2=0 \Rightarrow s=1\pm j1 \quad (\text{دو صفر در نیم‌صفحهٔ راست}),
+\]
+و همچنین از \(5s+1=0\) داریم:
+\[
+s=-0.2 \quad (\text{صفر در نیم‌صفحهٔ چپ})
+\]
+
+بنابراین تابع باز \(G(s)\) دارای \(P=0\) قطب در نیم‌صفحهٔ راست و ۲ صفر در RHP است (سیستم غیرمینیمم‌فاز).
+
+\subsection*{تحلیل نایکوییست}
+برای تعیین نقاط تقاطع نمودار نایکوییست با محور حقیقی، بخش موهومی \(Im\{G(j\omega)\}=0\) قرار داده می‌شود:
+\[
+5\omega^5 - 40\omega^3 + 20\omega = 0
+\]
+حل معادله فوق نتایج زیر را می‌دهد:
+\[
+\omega = 0, \quad \omega = \pm 0.7, \quad \omega = \pm 2.73
+\]
+
+تابع تبدیل سیستم قطب ناپایدار ندارد، بنابراین:
+\[
+P = 0
+\]
+
+طبق معیار نایکوییست:
+\[
+Z = N + P
+\]
+که در آن \(Z\) تعداد صفرهای حلقه بسته در RHP (داخل منحنی نایکوییست) و \(N\) تعداد دورانی‌های نمودار حول نقطه \(-1/K\) است.
+
+\subsection*{نتیجه‌گیری برای بهره‌های مختلف \(K\)}
+با توجه به نمودار نایکوییست:
+\begin{itemize}
+    \item به ازای \(K < 0.36\)، نمودار نقطه \(-1/K\) را دور نمی‌زند، بنابراین سیستم حلقه بسته پایدار است.
+    \item به ازای \(K > 0.36\)، نمودار حول نقطه \(-1/K\) دوران می‌کند و سیستم وارد ناپایداری می‌شود.
+\end{itemize}
+
+\section{سوال 2 }\label{Section1}
+\textbf{خلاصهٔ مسئله:}\\
+یک نمودار Bode داده‌شده است که سه نقطهٔ مشخص روی آن عبارت‌اند از:
+\begin{itemize}
+  \item $\omega_1 \approx 0.117\ \mathrm{rad/s},\ M(\omega_1)=61.4\ \mathrm{dB}$
+  \item $\omega_2 \approx 3.93\ \mathrm{rad/s},\ M(\omega_2)=1.14\ \mathrm{dB}$
+  \item $\omega_3 \approx 258\ \mathrm{rad/s},\ M(\omega_3)=-70.4\ \mathrm{dB}$
+\end{itemize}
+و فاز در نقاط:
+\[
+\angle G(0.108)\approx -2.79^\circ,\quad \angle G(4.43)\approx -89.4^\circ,\quad \angle G(255)\approx -178^\circ.
+\]
+
+
+\section*{۱. نقاط استفاده‌شده و تبدیل دسی‌بل به قدر مطلق}
+برای تبدیل مقدار دسی‌بل به قدر مطلقِ فرکانسی از رابطهٔ
+\[
+|G(j\omega)| = 10^{M(\omega)/20}
+\]
+استفاده شده است:
+\begin{align*}
+|G(j0.117)| &\approx 10^{61.4/20}\approx 1174.9,\\
+|G(j3.93)|  &\approx 10^{1.14/20}\approx 1.1403,\\
+|G(j258)|   &\approx 10^{-70.4/20}\approx 3.0199\times 10^{-4}.
+\end{align*}
+
+\section*{آ) وجود صفر و مینیمم‌فاز بودن}
+\begin{itemize}
+  \item رفتار فاز: فاز از تقریباً $0^\circ$ در فرکانس پایین تا حدود $-180^\circ$ در فرکانس بالا به‌صورت یکنواخت نزول می‌کند؛ این الگو شبیه رفتار دو قطب منفرد در \textbf{نیم‌صفحهٔ چپ} است.
+  \item اگر صفرِ RHP (نیم‌صفحهٔ راست) وجود داشت، معمولاً در فاز افزایشِ مثبت یا تغییر نامعمول مشاهده می‌شد. چنین چیزی در نمودار نیست.
+  \item نتیجه: \textbf{هیچ نشانهٔ آشکاری از صفر RHP وجود ندارد. سیستم به‌صورت محتاطانه مینیمم‌فاز در نظر گرفته می‌شود.}
+\end{itemize}
+
+\section*{ب) خطای حالت ماندگار (با فرض حلقهٔ بسته unity feedback)}
+ابتدا نوع سیستم (System Type) را تعیین می‌کنیم:
+\begin{itemize}
+  \item فاز در فرکانس پایین تقریباً $0^\circ$ است؛ بنابراین \textbf{هیچ انتگراتور (pole at origin)} دیده نمی‌شود $\Rightarrow$ سیستم از نوع \textbf{Type-0}.
+\end{itemize}
+
+برای سیستم Type-0 در حلقهٔ بسته unity:
+\begin{itemize}
+  \item ثبات موقعیت: $K_p=\lim_{s\to 0}G(s)\approx |G(j0.117)|\approx 1174.9$ (برآورد از مقدار فرکانس پایین)
+  \item خطای پله:
+  \[
+  e_{ss,\text{step}}=\frac{1}{1+K_p}\approx \frac{1}{1+1174.9}\approx 0.00085\ (\approx 0.085\%).
+  \]
+  \item خطای شیب (ramp) و سهموی (parabolic) برای Type-0 \textbf{نامتناهی} است:
+  \[
+  e_{ss,\text{ramp}}=\infty,\qquad e_{ss,\text{parabolic}}=\infty.
+  \]
+\end{itemize}
+
+\section*{ج) تقریب تابع تبدیل \(G(s)\)}
+با توجه به شیب تقریباً \(-40\ \mathrm{dB/dec}\) و فازِ نهایی $\approx -180^\circ$، فرض می‌کنیم مدل ساده دو قطب LHP و بدون صفر مؤثر باشد:
+\[
+G(s)\approx \frac{K}{(s+p_1)(s+p_2)}.
+\]
+
+از نقطهٔ فرکانس بالا تقریب می‌زنیم که برای $\omega\gg p_i$ داریم $|G(j\omega)|\approx \dfrac{K}{\omega^2}$. بنابراین با استفاده از نقطه $\omega=258$:
+\[
+K \approx |G(j258)|\cdot 258^2 \approx 3.02\times10^{-4}\cdot 258^2 \approx 20.1.
+\]
+سپس با برازش عددی ساده روی سه نقطهٔ داده‌شده، یک تقریب مناسب برای بازتولید مگنی‌تود به‌دست آمد:
+\[
+\boxed{G(s)\approx \dfrac{19.3}{(s+0.0518)^2}.}
+\]
+
+
+\section{سوال 3 }\label{Section1}
+
+\section*{۱. قطب‌ها و صفرها}
+مخرج تابع برابر است با $s(0.1s+1)(0.5s+1)$، لذا قطب‌ها:
+\[
+s=0,\qquad s=-10,\qquad s=-2.
+\]
+تابع حلقهٔ باز صفر ندارد.
+
+\section*{۲. معادلهٔ مشخصه (حلقهٔ بسته)}
+معادلهٔ مشخصه:
+\[
+1+L(s)=0 \quad\Longrightarrow\quad s(0.1s+1)(0.5s+1)+100k=0.
+\]
+با گسترش:
+\[
+0.05 s^3 + 0.6 s^2 + s + 100k = 0.
+\]
+ضرب در $20$:
+\[
+\boxed{s^3 + 12 s^2 + 20 s + 2000 k = 0.} \tag{*}
+\]
+
+\section*{۳. جدول راث}
+برای چندجمله‌ای \((*)\) جدول راث ستون اول به صورت زیر است:
+\[
+\begin{array}{c|cc}
+s^3 & 1 & 20\\[2pt]
+s^2 & 12 & 2000k\\[2pt]
+s^1 & b_1 & 0\\[2pt]
+s^0 & 2000k & -
+\end{array}
+\qquad\text{که}\qquad
+b_1=\frac{12\cdot 20 - 1\cdot 2000k}{12}=20-\frac{500}{3}k.
+\]
+
+شرط پایداری (همهٔ عناصر ستون اول مثبت) حکم می‌کند:
+\[
+2000k>0 \Rightarrow k>0,\qquad b_1>0 \Rightarrow k<0.12.
+\]
+
+\paragraph{بنابراین:}
+\[
+\boxed{0 < k < 0.12 \quad \text{(حلقهٔ بسته پایدار).}}
+\]
+در $k=0.12$ حالت مرزی (دو ریشه موهومی)، برای $k>0.12$ ناپایدار.
+
+\section*{۴. نقطهٔ عبور از محور موهومی (ناکوییست / فاز)}
+برای $s=j\omega$ زاویهٔ $L(j\omega)$ برابر است با:
+\[
+\angle L(j\omega)=-90^\circ - \arctan(0.1\omega) - \arctan(0.5\omega).
+\]
+شرط فازی برای برخورد با $-1$:
+\[
+-90^\circ - \arctan(0.1\omega) - \arctan(0.5\omega) = -180^\circ
+\]
+یعنی
+\[
+\arctan(0.1\omega)+\arctan(0.5\omega)=90^\circ.
+\]
+با استفاده از فرمول جمع تانژانت می‌یابیم:
+\[
+1-0.05\omega^2=0 \quad\Rightarrow\quad \omega=\sqrt{20}\approx 4.4721.
+\]
+اندازهٔ $L(j\omega)$ در این فرکانس:
+\[
+|L(j\omega)|=\frac{100k}{\omega\sqrt{1+(0.1\omega)^2}\sqrt{1+(0.5\omega)^2}}.
+\]
+شرط $|L|=1$ برای برخورد به $-1$ نتیجه می‌دهد:
+\[
+k_{\text{cr}}\approx 0.12.
+\]
+
+\section*{۵. نکات روت‌لوکوس}
+\begin{itemize}
+    \item قطب‌ها: $0,-2,-10$. هیچ صفر باز ندارد.
+    \item مرکز آسمپتوت‌ها: $\sigma_a=(-12)/3=-4$.
+    \item زوایا: $60^\circ,180^\circ,300^\circ$.
+    \item روت‌لوکوس روی محور حقیقی در \((-\infty,-10)\) و \((-2,0)\).
+    \item نقطهٔ breakaway در بازهٔ $(-2,0)$ تقریباً در $s\approx -0.94495$، مقدار متناظر $k\approx 0.0045138$.
+    \item آستانهٔ پایداری: $k=0.12$ (دو ریشه در $s=\pm j4.472$).
+\end{itemize}
+
+\section*{۶. رسم نایکوئیست}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/115.jpg}
+  \caption{نمودار نایکوئیست }
+  \label{fig:block-diagram}
+\end{figure}
+
+
+\section*{۷. نتیجهٔ }
+\[
+\boxed{0<k<0.12 \quad \text{حلقهٔ بسته پایدار است.}}
+\]
+در $k=0.12$ حالت مرزی با جفت ریشهٔ موهومی در $\pm j4.472$. برای مقدارهای بزرگ‌تر از آن سیستم ناپایدار می‌شود.
+
+
+\section{سوال 4 }\label{Section1}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/222.jpg}
+  \caption{نمودار نایکوئیست }
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/223.jpg}
+  \caption{نمودار نایکوئیست }
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.88\textwidth]{img/224.jpg}
+  \caption{نمودار نایکوئیست }
+  \label{fig:block-diagram}
+\end{figure}
+
+
+\section*{۱. استخراج معادلهٔ مشخصه}
+اگر $P(s)$ انتقالِ جسم (plant) باشد:
+\[
+P(s)=\frac{10}{1+0.1s}\cdot\frac{1}{0.01 s^2}=\frac{1000}{s^2(1+0.1s)}.
+\]
+با نوشتن روابط حلقه (تفاضل‌ها و فیدبک داخلی) معادلهٔ مشخصه به صورت
+\[
+1 + (K + K_t s)\,P(s)=0
+\]
+به‌دست می‌آید. با ضرب در مخرج این عبارت تبدیل می‌شود به:
+\[
+s^2(1+0.1s) + 1000(K + K_t s) = 0,
+\]
+یا به شکل چندجمله‌ای درجهٔ سه:
+\[
+0.1 s^3 + s^2 + 1000 K_t s + 1000 K = 0.
+\]
+ضرب در $10$ برای حذف اعشار:
+\[
+\boxed{s^3 + 10 s^2 + 10000 K_t s + 10000 K = 0.}
+\]
+
+\section*{۲. جدول راث}
+اضلاع: $a_3=1,\; a_2=10,\; a_1=10000K_t,\; a_0=10000K$. جدول راث ستون اول:
+\[
+\begin{array}{c|cc}
+s^3 & 1 & 10000K_t\\[4pt]
+s^2 & 10 & 10000K\\[4pt]
+s^1 & b_1 & 0\\[4pt]
+s^0 & 10000K & -
+\end{array}
+\qquad
+b_1 = \frac{10\cdot 10000K_t - 1\cdot 10000K}{10} = 10000K_t - 1000K.
+\]
+
+شرط پایداری: تمامی اعضای ستون اول مثبت، بنابراین:
+\[
+10000K>0 \Rightarrow K>0,
+\]
+و
+\[
+10000K_t - 1000K>0 \Rightarrow 10K_t - K >0.
+\]
+نتیجهٔ نهایی:
+\[
+\boxed{K>0 \quad\text{و}\quad K<10K_t.}
+\]
+
+\section*{۳. پاسخ‌های موردی}
+\begin{itemize}
+  \item[(الف)] $K_t=0$: آنگاه $K<0$ از یک سو و $K>0$ از سوی دیگر مورد نیاز است — تناقض. بنابراین \textbf{هیچ $K>0$‌ای سیستم را پایدار نمی‌کند}. ($K=0$ حالت مرزی است.)
+  \item[(ب)] $K_t=0.01$: شرط $\;0<K<10K_t\;$ می‌دهد $0<K<0.1$.
+  \item[(ج)] $K_t=0.1$: شرط $\;0<K<10K_t\;$ می‌دهد $0<K<1$.
+  \item[(د)] اگر $K=10$ آنگاه شرط $K<10K_t$ می‌شود $10<10K_t$ یا $K_t>1$. پس برای $K=10$ باید $K_t>1$ باشد تا سیستم پایدار شود.
+\end{itemize}
+
+
+
+
+
+\section{ضمیمه}
+\href{https://github.com/aminism00/LinearControl2025/tree/main/HWs/HW5}{ ادرس گیت هاب  (\lr{GitHub})}.
+
+\end{document}
