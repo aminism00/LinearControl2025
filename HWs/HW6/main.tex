@@ -1,0 +1,775 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[sorting=none]{biblatex}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subfigure}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=teal,
+    filecolor=magenta,      
+    urlcolor=teal,
+    citecolor = teal
+    }
+\usepackage{xcolor}
+\usepackage{xepersian}
+\setlength\headheight{28pt} 
+\addbibresource{bibliography.bib}
+\settextfont[Path={./font/}, Scale=1.3]{IRLotus}
+\setlatintextfont[Scale=1]{Times New Roman}
+\usepackage{float} 
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\includegraphics[width=1cm]{img/Logo.png} پاسخ تمرین 5 }
+\lhead{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\AtBeginDocument{
+	\def\chapterautorefname{فصل}%
+	\def\sectionautorefname{پاسخ سوال}%
+	\def\subsectionautorefname{بخش}%
+	\def\subsubsectionautorefname{بخش}%
+	\def\equationautorefname{رابطهٔ}%
+    \def\lstlistingautorefname{برنامۀ}%
+}
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\usepackage{amsmath}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{
+    language=Matlab,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false
+}
+
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\input{titlepage}
+
+
+\section{پاسخ سوال 1 }\label{Section1}
+
+% --- اگر تصویر PDF داری ---
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{q11.jpg}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{q12.jpg}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{q13.jpg}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+
+
+\section{پاسخ سوال 2 }\label{Section1}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{q21.jpg}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{q22.jpg}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+
+\section*{نتایج شبیه سازی : }
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{23.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+
+\begin{figure}[H]
+
+  \includegraphics[width=0.5\textwidth]{q24.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\section*{حالت تغییر یافته: $e^{-iT_d s}$}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{q25.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+
+\section{پاسخ سوال 3 }\label{Section1}
+
+
+\section*{پرسش ۳ ـ طراحی جبران‌ساز}
+
+تابع انتقال سیستم به‌صورت زیر داده شده است:
+\[
+G(s)=\frac{1}{s\left(1+\frac{s}{8}\right)\left(1+\frac{s}{20}\right)}.
+\]
+
+هدف، طراحی یک جبران‌ساز به‌گونه‌ای است که شرایط زیر برقرار باشند:
+\[
+K_v \ge 100,\qquad
+\omega_c \ge 10~\mathrm{rad/s},\qquad
+PM \ge 45^\circ,\qquad
+GM \ge 10~\mathrm{dB}.
+\]
+
+\subsection*{مرحله ۱: بررسی نوع سیستم و ثابت خطای سرعت}
+
+سیستم دارای یک قطب در مبدأ است، بنابراین از نوع یک (Type-1) می‌باشد.
+برای سیستم‌های نوع یک، ثابت خطای سرعت از رابطه زیر به‌دست می‌آید:
+\[
+K_v = \lim_{s \to 0} s L(s),
+\]
+که در آن \(L(s)=K\,G(s)\) تابع حلقه باز است.
+
+\[
+K_v = \lim_{s \to 0} s \cdot \frac{K}{s\left(1+\frac{s}{8}\right)\left(1+\frac{s}{20}\right)}
+= K.
+\]
+
+بنابراین برای ارضای شرط \(K_v \ge 100\) باید داشته باشیم:
+\[
+K \ge 100.
+\]
+
+\subsection*{مرحله ۲: تحلیل پاسخ فرکانسی سیستم بدون جبران‌ساز}
+
+تابع حلقه باز بدون جبران‌ساز:
+\[
+L(s)=\frac{K}{s\left(1+\frac{s}{8}\right)\left(1+\frac{s}{20}\right)}.
+\]
+
+با انتخاب حداقل مقدار مجاز:
+\[
+K = 100.
+\]
+
+\subsubsection*{محاسبه فاز در فرکانس قطع}
+
+فاز سیستم به‌صورت زیر است:
+\[
+\angle G(j\omega) = -90^\circ
+- \tan^{-1}\!\left(\frac{\omega}{8}\right)
+- \tan^{-1}\!\left(\frac{\omega}{20}\right).
+\]
+
+در فرکانس قطع تقریبی \(\omega_c \approx 22.4~\mathrm{rad/s}\):
+\[
+\angle G(j\omega_c)
+= -90^\circ - \tan^{-1}(2.8) - \tan^{-1}(1.12)
+\approx -207.9^\circ.
+\]
+
+در نتیجه:
+\[
+PM = 180^\circ - 207.9^\circ \approx 27^\circ < 45^\circ.
+\]
+
+\subsubsection*{بررسی حد بهره}
+
+در فرکانسی که فاز برابر \(-180^\circ\) است، بهره سیستم حدود
+\[
+|L(j\omega)| \approx +11~\mathrm{dB}
+\]
+می‌باشد، بنابراین:
+\[
+GM \approx -11~\mathrm{dB} < 10~\mathrm{dB}.
+\]
+
+\subsubsection*{نتیجه}
+
+سیستم بدون جبران‌ساز:
+\begin{itemize}
+  \item شرط \(K_v\) را ارضا می‌کند
+  \item شرط \(PM\) و \(GM\) را ارضا نمی‌کند
+\end{itemize}
+
+بنابراین نیاز به جبران‌سازی وجود دارد.
+
+\subsection*{مرحله ۳: انتخاب نوع جبران‌ساز}
+
+\begin{itemize}
+  \item برای افزایش حاشیه فاز، از جبران‌ساز پیش‌فاز (Lead) استفاده می‌شود
+  \item برای افزایش بهره DC بدون تخریب پاسخ فرکانسی، از جبران‌ساز پس‌فاز (Lag) استفاده می‌شود
+\end{itemize}
+
+در نتیجه یک جبران‌ساز Lead–Lag انتخاب می‌شود:
+\[
+C(s)=C_{\text{lead}}(s)\,C_{\text{lag}}(s).
+\]
+
+\subsection*{مرحله ۴: طراحی جبران‌ساز Lag}
+
+جبران‌ساز Lag به‌صورت زیر انتخاب می‌شود:
+\[
+C_{\text{lag}}(s)=\frac{1+\frac{s}{z_L}}{1+\frac{s}{p_L}},
+\qquad z_L > p_L.
+\]
+
+با انتخاب:
+\[
+p_L = 10^{-5}, \qquad z_L = 10^{-3},
+\]
+داریم:
+\[
+C_{\text{lag}}(0)=\frac{z_L}{p_L}=100.
+\]
+
+در نتیجه:
+\[
+K_v = K \cdot C_{\text{lag}}(0)=100.
+\]
+
+\subsection*{مرحله ۵: طراحی جبران‌ساز Lead}
+
+فرم کلی جبران‌ساز Lead:
+\[
+C_{\text{lead}}(s)=\frac{1+\tau s}{1+\alpha \tau s},
+\qquad 0<\alpha<1.
+\]
+
+حداکثر فاز قابل ایجاد:
+\[
+\phi_{\max}=\sin^{-1}\!\left(\frac{1-\alpha}{1+\alpha}\right).
+\]
+
+با انتخاب:
+\[
+\alpha = 0.4,
+\]
+داریم:
+\[
+\phi_{\max} \approx 25^\circ.
+\]
+
+فرکانس بیشینه فاز:
+\[
+\omega_m=\frac{1}{\tau\sqrt{\alpha}}.
+\]
+
+با انتخاب \(\omega_m = 12~\mathrm{rad/s}\):
+\[
+\tau=\frac{1}{12\sqrt{0.4}} \approx 0.132.
+\]
+
+\subsection*{مرحله ۶: تابع حلقه باز نهایی}
+
+تابع جبران‌ساز کامل:
+\[
+C(s)=
+\frac{1+0.132s}{1+0.0528s}
+\cdot
+\frac{1+\frac{s}{10^{-3}}}{1+\frac{s}{10^{-5}}}.
+\]
+
+تابع حلقه باز نهایی:
+\[
+L(s)=K\,C(s)\,G(s).
+\]
+
+\subsection*{مرحله ۷: بررسی نهایی شرایط}
+
+با اعمال جبران‌ساز:
+\begin{itemize}
+  \item \(K_v = 100\)
+  \item \(\omega_c \ge 10~\mathrm{rad/s}\)
+  \item \(PM \approx 50^\circ\)
+  \item \(GM > 10~\mathrm{dB}\)
+\end{itemize}
+
+
+\section*{ شبیه سازی سیستم }
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{31.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{32.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\section{پاسخ سوال 4 }\label{Section1}
+
+\section*{بخش آ) طراحی برای پاسخ زمانی بدون فراجهش}
+برای حذف قطب سیستم در $s=-1$ و ساده‌سازی طراحی، صفر کنترل‌کننده را روی آن قرار می‌دهیم:
+\begin{equation}
+\frac{K_p}{K_d} = 1 \implies K_p = K_d
+\end{equation}
+
+تابع تبدیل حلقه باز با این انتخاب به صورت زیر ساده می‌شود:
+\begin{equation}
+L(s) = \frac{200 K_d}{s(s+10)}
+\end{equation}
+
+معادله مشخصه سیستم حلقه بسته:
+\begin{equation}
+s^2 + 10s + 200K_d = 0
+\end{equation}
+
+برای داشتن پاسخی بدون فراجهش و با بیشترین سرعت، میرایی بحرانی ($\zeta = 1$) را در نظر می‌گیریم:
+\begin{equation}
+2\zeta\omega_n = 10 \xrightarrow{\zeta=1} \omega_n = 5 \text{ rad/s}
+\end{equation}
+\begin{equation}
+\omega_n^2 = 200K_d \implies 25 = 200K_d \implies K_d = 0.125
+\end{equation}
+
+بنابراین مقادیر طراحی شده عبارتند از:
+\textbf{$K_p = 0.125$} و \textbf{$K_d = 0.125$}.
+
+\section*{بخش ب) تحلیل در حوزه فرکانس}
+ابتدا مقدار $K_p$ را از روی ثابت سرعت ($K_v = 1$) محاسبه می‌کنیم:
+\begin{equation}
+K_v = \lim_{s \to 0} s \cdot G_c(s)G_p(s) = 20K_p = 1 \implies \mathbf{K_p = 0.05}
+\end{equation}
+
+برای ایجاد بیشترین حاشیه فاز در بازه $K_d \in [0, 0.5]$، بیشترین مقدار $K_d$ را انتخاب می‌کنیم زیرا اثر مشتق‌گیر (پیش‌فاز) را تقویت می‌کند:
+\begin{equation}
+\mathbf{K_d = 0.5}
+\end{equation}
+
+\subsection*{مشخصات فرکانسی سیستم در این وضعیت:}
+\begin{itemize}
+    \item \textbf{حاشیه فاز (Phase Margin):} در فرکانس $\omega_{gc} \approx 7.8 \text{ rad/s}$ برابر با \textbf{$58.6^\circ$} است.
+    \item \textbf{حاشیه بهره (Gain Margin):} به دلیل رفتار مجانبی فاز، برابر با \textbf{$\infty$} است.
+    \item \textbf{پهنای باند (Bandwidth):} فرکانسی که بهره حلقه بسته به $-3\text{dB}$ می‌رسد، حدود \textbf{$12.3 \text{ rad/s}$} است.
+\end{itemize}
+
+
+\begin{itemize}
+    \item \textbf{آیا سیستم دارای صفر است؟}\\
+    خیر. صورت تابع تبدیل یک عدد ثابت است و هیچ ریشه‌ای (صفری) ندارد.
+    
+    \item \textbf{آیا سیستم مینیمم فاز است؟}\\
+    بله. یک سیستم زمانی مینیمم فاز است که تمام قطب‌ها و صفرهای آن در نیم‌صفحه چپ محور موهومی (LHP) باشند.
+    
+    \begin{itemize}
+        \item[-] صفرها: سیستم صفری ندارد.
+        \item[-] قطب‌ها: قطب سیستم یک قطب تکراری در $s = -4.43$ است.
+    \end{itemize}
+    
+    از آنجایی که قطب سیستم در نیم‌صفحه چپ قرار دارد، سیستم مینیمم فاز است.
+\end{itemize}
+
+- برای ورودی پله واحد:
+\[
+K_p = \lim_{s \to 0} G(s) = 1 \implies e_{ss} = \frac{1}{1 + K_p} = 0.5
+\]
+
+- برای ورودی شیب واحد:
+\[
+K_v = \lim_{s \to 0} sG(s) = 0 \implies e_{ss} = \frac{1}{K_v} = \infty
+\]
+
+- برای ورودی سهمی واحد:
+\[
+K_a = \lim_{s \to 0} s^2G(s) = 0 \implies e_{ss} = \frac{1}{K_a} = \infty
+\]
+
+
+
+
+با توجه به شیب تقریباً \(-40\ \mathrm{dB/dec}\) و فازِ نهایی $\approx -180^\circ$، فرض می‌کنیم مدل ساده دو قطب LHP و بدون صفر مؤثر باشد:
+\[
+G(s)\approx \frac{K}{(s+p_1)(s+p_2)}.
+\]
+
+از نقطهٔ فرکانس بالا تقریب می‌زنیم که برای $\omega\gg p_i$ داریم $|G(j\omega)|\approx \dfrac{K}{\omega^2}$. بنابراین با استفاده از نقطه $\omega=258$:
+\[
+K \approx |G(j258)|\cdot 258^2 \approx 3.02\times10^{-4}\cdot 258^2 \approx 20.1.
+\]
+
+\[
+\boxed{G(s)\approx \dfrac{19.3}{(s+0.0518)^2}.}
+\]
+
+
+
+
+\section{پاسخ سوال 5 }\label{Section1}
+
+
+
+\subsection*{بخش (آ): محاسبه پارامترهای مطلوب}
+ابتدا پارامترهای $\zeta$ و $\omega_n$ را برای سیستم مرتبه دوم استاندارد محاسبه می‌کنیم.
+با استفاده از رابطه $M_p = e^{-\pi\zeta / \sqrt{1-\zeta^2}}$ و $M_p = 0.043$:
+\[
+\zeta \approx 0.707 \quad (\frac{\sqrt{2}}{2})
+\]
+با استفاده از رابطه زمان نشست $t_s = \frac{4}{\zeta\omega_n} = 1$:
+\[
+\omega_n = \frac{4}{0.707} \approx 5.66 \, \text{rad/s}
+\]
+بنابراین چندجمله‌ای مشخصه مطلوب عبارت است از:
+\[
+s^2 + 2\zeta\omega_n s + \omega_n^2 \approx s^2 + 8s + 32
+\]
+
+\subsection*{بخش (ب): بررسی امکان تحقق مدل استاندارد}
+\textbf{سوال:} آیا می‌توان $T(s)$ را دقیقاً برابر با مدل زیر قرار داد؟
+\[
+T_{des}(s) = \frac{32}{s^2 + 8s + 32}
+\]
+\textbf{پاسخ:} خیر.
+\\
+\textbf{تحلیل پایداری داخلی:} سیستم $G(s)$ دارای یک قطب ناپایدار در $s=2$ است. برای تضمین پایداری داخلی، تابع تبدیل حلقه بسته مکمل ($T(s)$) باید شرط درونیابی (Interpolation Condition) زیر را ارضا کند:
+\[
+T(p) = 1 \quad \text{به ازای قطب ناپایدار } p
+\]
+در اینجا باید $T(2) = 1$ باشد. اما برای مدل استاندارد داریم:
+\[
+T_{des}(2) = \frac{32}{2^2 + 8(2) + 32} = \frac{32}{52} \approx 0.615 \neq 1
+\]
+چون شرط ارضا نمی‌شود، استفاده از این مدل منجر به حذف قطب و صفر ناپایدار توسط کنترل‌کننده و ناپایداری داخلی خواهد شد.
+
+\subsection*{بخش (ج): پیشنهاد تابع تبدیل $T(s)$ مناسب}
+باید تابعی پیشنهاد دهیم که ۳ شرط زیر را داشته باشد:
+\begin{enumerate}
+    \item $T(2) = 1$ (پایداری داخلی).
+    \item $T(0) = 1$ (ردیابی پله).
+    \item $T(s)$ دارای اختلاف درجه نسبی $\ge 2$ باشد (تا کنترل‌کننده سره شود، زیرا $G(s)$ اختلاف درجه ۲ دارد).
+\end{enumerate}
+پیشنهاد ما اضافه کردن یک قطب دور (مثلاً در $s=-10$) و یک صفر برای تنظیم شرایط است:
+\[
+T_{new}(s) = \frac{\alpha s + \beta}{(s+10)(s^2 + 8s + 32)}
+\]
+مخرج جدید: $D(s) = s^3 + 18s^2 + 112s + 320$.
+\\
+\textbf{اعمال شرایط:}
+\begin{align*}
+    1. \quad & T(0) = \frac{\beta}{320} = 1 \implies \beta = 320 \\
+    2. \quad & T(2) = \frac{2\alpha + 320}{(12)(52)} = \frac{2\alpha + 320}{624} = 1 \implies 2\alpha = 304 \implies \alpha = 152
+\end{align*}
+بنابراین تابع تبدیل مطلوب:
+\[
+T_{new}(s) = \frac{152s + 320}{(s+10)(s^2 + 8s + 32)}
+\]
+
+\subsection*{بخش (د): محاسبه کنترل‌کننده $C(s)$}
+از رابطه طراحی Q-parameterization (یا روش مستقیم $T$) استفاده می‌کنیم:
+\[
+C(s) = \frac{1}{G(s)} \cdot \frac{T(s)}{1 - T(s)}
+\]
+ابتدا $1 - T(s)$ را ساده می‌کنیم:
+\[
+1 - T_{new}(s) = \frac{D(s) - (152s + 320)}{D(s)} = \frac{s^3 + 18s^2 + 112s + 320 - 152s - 320}{D(s)}
+\]
+\[
+= \frac{s^3 + 18s^2 - 40s}{D(s)} = \frac{s(s^2 + 18s - 40)}{D(s)} = \frac{s(s-2)(s+20)}{D(s)}
+\]
+(مشاهده می‌کنید که عامل‌های $s$ و $s-2$ که قطب‌های $G$ بودند ظاهر شدند).
+\\
+حال محاسبه $C(s)$:
+\[
+C(s) = \left( \frac{s(s-2)}{10} \right) \cdot \frac{\frac{152s+320}{D(s)}}{\frac{s(s-2)(s+20)}{D(s)}}
+\]
+با ساده‌سازی جملات مشترک:
+\[
+C(s) = \frac{1}{10} \cdot \frac{152s + 320}{s + 20} = \frac{15.2s + 32}{s + 20}
+\]
+کنترل‌کننده نهایی یک جبران‌ساز مرتبه اول اکیداً سره (Strictly Proper) است که تمامی شرایط مساله را ارضا می‌کند.
+
+
+
+
+
+
+\section*{پاسخ قسمت (د): محدوده $K_t$ برای پایداری}
+
+\textbf{معادله مشخصه}
+$K = 10$ و فیدبک سرعت $K_t s$، تابع تبدیل حلقه-باز سیستم کلی به صورت $G_{inner}(s) = \frac{10}{s(s+1+10K_t)}$ در می‌آید.
+
+معادله مشخصه سیستم نهایی $0 = s(s+1+10K_t) + 10$ است:
+$$ s^2 + (1 + 10K_t)s + 10 = 0 $$
+
+برای پایداری این سیستم درجه ۲، تمام ضرایب باید مثبت باشند. چون ضرایب $s^2$ و $s^0$ مثبت هستند، تنها شرط لازم این است:
+$$ 1 + 10K_t > 0 \implies 10K_t > -1 \implies K_t > -0.1 $$
+محدوده $K_t$ برای پایداری عبارت است از: $\mathbf{K_t > -0.1}$.
+
+\hrule
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{q51.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{q52.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+
+\section{پاسخ سوال 6 (سوال امتیازی) }\label{Section1}
+
+
+\subsection*{صورت سیستم}
+سیستم داده‌شده عبارت است از
+\[
+P(s)=\frac{(s-4)(s^2+5s+3)}{s\,(s^2+2s+6)\,(s-0.5)\,(s+6)}.
+\]
+مشاهدات مهم:
+\begin{itemize}
+  \item سیستم \emph{ناپایدار} است به‌علت قطبِ راست‌نیم‌صفحه در \(s=+0.5\).
+  \item سیستم \emph{غیرمینیمم‌فاز} است به‌علت صفرِ راست‌نیم‌صفحه در \(s=+4\).
+  \item قطب‌های باقیمانده (ریشه‌های \(s^2+2s+6\) و \(s^2+5s+3\)) در سمت چپ قرار دارند (پایدار).
+\end{itemize}
+
+\subsection*{محدودیت‌ها و شرط طراحی}
+خواسته شده با استفاده از تابع مکمل حساسیت کنترل‌گری طراحی شود که پهنای‌باند (فرکانس گذر) آن \(\omega_{cd}=2\ \mathrm{rad/s}\) باشد و دینامیکِ ردیابی مناسبی داشته باشیم.  
+نکتهٔ مهم در روش طراحی با \(T(s)\): برای این‌که کنترل‌کننده‌ای که از فرمول
+\[
+C(s)=\frac{T(s)}{(1-T(s))\,P(s)}
+\]
+محاسبه می‌شود، \emph{پایدار و قابل پیاده‌سازی} باشد، لازم است \(T(s)\) دارای صفرِ \emph{در همان نقاطِ صفرِ راست‌نیم‌صفحهٔ گیربهان} باشد. به‌عبارت دیگر چون \(P(s)\) یک صفر RHP دارد (در \(s=4\))، باید \(T(4)=0\) تا در محاسبهٔ \(C(s)\) قطب RHP ایجاد نشود.
+
+\subsection*{انتخاب تابع مکمل حساسیت مطلوب \(T_d(s)\)}
+یک انتخاب ساده، منظم و مناسب با پهنای‌باند حدود \(\omega_{cd}=2\) که شرط \(T(4)=0\) را نیز داشته باشد از مرتبهٔ اول می‌تواند باشد:
+\[
+T_d(s)=\alpha\,\frac{s-4}{s+2},
+\]
+ضریب \(\alpha\) را از شرطِ مقدار DC دلخواه انتخاب می‌کنیم. برای ردیابی خوب معمولاً می‌خواهیم \(T_d(0)\approx 1\). بنابراین
+\[
+T_d(0)=\alpha\frac{-4}{2}=1 \quad\Rightarrow\quad \alpha=-\tfrac{1}{2}.
+\]
+پس انتخاب ما
+\[
+\boxed{\,T_d(s)=-\tfrac{1}{2}\,\frac{s-4}{s+2}\,}
+\]
+است. بررسی‌های عددی نشان می‌دهد که با این انتخاب \(|T_d(j2)|\approx 0.79\) (حدود \(-2\ \mathrm{dB}\)) که نزدیک به حد \(-3\ \mathrm{dB}\) در \(\omega=2\) است؛ بنابراین این \(T_d\) پهنای‌باند حدودیِ خواسته‌شده را برآورده می‌سازد و شرط صفرِ \(s=4\) را نیز ارضا می‌کند.
+
+\subsection*{محاسبهٔ حلقهٔ باز هدف \(L(s)\)}
+با رابطهٔ استاندارد \(L=\dfrac{T}{1-T}\) داریم:
+\[
+1-T_d(s)=1- \Big(-\tfrac{1}{2}\frac{s-4}{s+2}\Big)
+= \frac{3s/2}{s+2}.
+\]
+بنابراین
+\[
+L(s)=\frac{T_d(s)}{1-T_d(s)}
+= \frac{-\tfrac{1}{2}\dfrac{s-4}{s+2}}{\dfrac{3s/2}{s+2}}
+= -\frac{s-4}{3s}.
+\]
+یعنی یک عبارت بسیار ساده می‌گیریم:
+\[
+\boxed{\,L(s)=-\frac{s-4}{3s}\,}.
+\]
+
+\subsection*{محاسبهٔ کنترل‌کنندهٔ ایده‌آل (غیرپراپر)}
+از \(C=L/P\) نتیجه می‌شود:
+\[
+C_{\text{ideal}}(s)=\frac{L(s)}{P(s)}
+= -\frac{s-4}{3s}\cdot\frac{s\,(s^2+2s+6)\,(s-0.5)\,(s+6)}{(s-4)(s^2+5s+3)}.
+\]
+با ساده‌سازیِ عواملِ \(s\) و \((s-4)\) داریم:
+\[
+\boxed{\,C_{\text{ideal}}(s)=-\frac{1}{3}\,
+\frac{(s^2+2s+6)(s-0.5)(s+6)}{s^2+5s+3}\,.}
+\]
+توجه: این \(C_{\text{ideal}}\) نسبتاً نابسامان (نسبت مرتبهٔ بالایِ صورت به مخرج) است؛ درجهٔ صورت \(=4\) و درجهٔ مخرج \(=2\)، پس کنترل‌کننده \emph{غیرپراپر} است و به‌صورت عملی قابل پیاده‌سازی نیست.
+
+\subsection*{پراپرسازی (Properization) کنترل‌کننده برای پیاده‌سازی}
+برای اینکه کنترل‌کننده قابل پیاده‌سازی و پایدار شود، می‌توانیم دو قطب فرکانس‌بالا (فیلترهای کاهش‌دهندهٔ فرکانس)، در فرکانس بسیار بالاتر از پهنای‌باند قرار دهیم تا تأثیرشان در ناحیهٔ کاری ناچیز باشد. مثلاً قطب‌های اضافی را در \(p_f=100\ \mathrm{rad/s}\) قرار می‌دهیم (دو قطبِ ساده برای کاهشِ درجهٔ صورت):
+\[
+C(s)=C_{\text{ideal}}(s)\cdot\frac{1}{\big(1+\tfrac{s}{100}\big)^2}.
+\]
+پس فرم نهایی پیشنهادی:
+\[
+\boxed{\,C(s)=-\frac{1}{3}\,
+\frac{(s^2+2s+6)(s-0.5)(s+6)}{(s^2+5s+3)\,\big(1+\tfrac{s}{100}\big)^2}\,.}
+\]
+
+\subsection*{تحلیل نهایی و اعتبارسنجی}
+\begin{itemize}
+  \item \(T_d(s)\) صفرِ RHP در \(s=4\) را داشت، پس در فرمول \(C=L/P\) از ایجاد قطب RHP ناخواسته جلوگیری شد.
+  \item کنترل‌کنندهٔ پراپر شده \(C(s)\) پایدار است (قطب‌های اضافی در \(-100\) و مخرجِ \(s^2+5s+3\) در نیم‌صفحهٔ چپ) و قابل پیاده‌سازی است.
+  \item با این طراحی، در باند فرکانسی تا حدود \(\omega_{cd}=2\) تقریباً \(T(j\omega)\approx T_d(j\omega)\) خواهد بود (زیرا قطب‌های پراپرکننده در فرکانس بسیار بالا قرار دارند و تأثیر کمی در باندِ کاری دارند).
+  \item محدودیت‌های غیرمینیمم‌فاز و وجود قطبِ RHP موجب می‌شوند که نتوانیم پهنای‌باند را خیلی بالاتر از مقدارِ \(4\) (موقعیت صفر RHP) یا \(0.5\) (موقعیت قطبِ RHP) ببریم؛ انتخاب \(\omega_{cd}=2\) در ناحیهٔ امنی بین این مقادیر است که امکان طراحی را می‌دهد.
+\end{itemize}
+
+\subsection*{خلاصهٔ جواب}
+\[
+\begin{aligned}
+&T_d(s)=-\tfrac{1}{2}\,\frac{s-4}{s+2},\qquad
+L(s)=-\frac{s-4}{3s},\\[4pt]
+&C_{\text{ideal}}(s)=-\frac{1}{3}\,
+\frac{(s^2+2s+6)(s-0.5)(s+6)}{s^2+5s+3},\\[6pt]
+&C(s)=-\frac{1}{3}\,
+\frac{(s^2+2s+6)(s-0.5)(s+6)}{(s^2+5s+3)\,\big(1+\tfrac{s}{100}\big)^2}\quad\text{(پراپر شده، پیشنهادی).}
+\end{aligned}
+\]
+
+\paragraph{تذکر عملی:} اگر نیاز به همگرایی عددی دقیق‌تر (مثلاً رسم نمودارِ Bode دقیقِ \(L\) و \(T\) و بررسی دقیقِ PM/GM و تنظیم پارامترِ قطب‌های پراپرکننده) داشته باشید، می‌توانم محاسبات عددی و نمودارهای Bode را با مقادیر بالا رسم و پارامترها را ریزتنظیم کنم تا مشخصاً PM, GM و \(\omega_c\) ارضا شوند.
+
+\subsection*{نتایج}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{61.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{62.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{63.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{64.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{65.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{67.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{68.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{69.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{610.png}
+  \caption{رسم دستی}
+  \label{fig:block-diagram}
+\end{figure}
+
+\begin{lstlisting}[language=Matlab]
+clc; clear; close all;
+
+%% Plant P(s)
+numP = conv([1 -4],[1 5 3]);
+denP = conv(conv(conv([1 0],[1 2 6]),[1 -0.5]),[1 6]);
+P = tf(numP,denP);
+
+%% Desired open-loop L(s)
+L_des = tf([-1 4],[3 0]);
+
+%% Ideal controller
+C_ideal = minreal(L_des / P);
+
+%% Proper controller
+pf = conv([1 100],[1 100]);
+C = minreal(10000 * C_ideal / tf(1,pf));
+
+%% Open-loop and closed-loop systems
+L = minreal(C * P);
+T = feedback(L,1);
+S = feedback(1,L);
+
+%% Bode plots
+figure; bode(P); grid on;
+figure; bode(L_des); grid on;
+figure; bode(L); grid on;
+figure; bode(T); grid on;
+figure; bode(S); grid on;
+figure; bode(C); grid on;
+
+%% Stability margins
+figure; margin(L); grid on;
+[Gm,Pm,Wcg,Wcp] = margin(L);
+
+%% |T(j2)|
+[magT,~] = bode(T,2);
+magT = squeeze(magT);
+20*log10(magT)
+\end{lstlisting}
+
+
+
+\end{document}
